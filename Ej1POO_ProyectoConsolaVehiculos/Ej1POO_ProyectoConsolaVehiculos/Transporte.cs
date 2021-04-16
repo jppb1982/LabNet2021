@@ -5,7 +5,7 @@ using System.Text;
 namespace Ej1POO_ProyectoConsolaVehiculos
 {
     //Concepto aplicado: Clase abstracta
-    public abstract class Transporte
+    public abstract class Transporte : IValidacónTransporte
     {
         //Concepto aplicado: variable privada
         private int pasajeros;
@@ -21,9 +21,8 @@ namespace Ej1POO_ProyectoConsolaVehiculos
 
         public abstract void Detenerse();
 
-        
-
-
+        //Implementación de interface
+        public abstract bool SuperaLimitePasajeros(int numeroPasajeros);
         
     }
 }

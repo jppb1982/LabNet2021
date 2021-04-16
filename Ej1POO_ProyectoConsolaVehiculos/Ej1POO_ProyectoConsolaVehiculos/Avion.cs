@@ -6,6 +6,7 @@ namespace Ej1POO_ProyectoConsolaVehiculos
 {
     class Avion : Transporte
     {
+
         //Implementación métodos públicos de la clase abstracta
         public override void Avanzar()
         {
@@ -16,6 +17,12 @@ namespace Ej1POO_ProyectoConsolaVehiculos
         public override void Detenerse()
         {
             Console.WriteLine("Implementación método detener en avión.");
+        }
+
+        //Implementación métodos públicos de la clase abstracta
+        public override bool SuperaLimitePasajeros(int numeroPasajeros)
+        {
+            return numeroPasajeros > 170;
         }
     }
 }
