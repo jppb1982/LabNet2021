@@ -16,7 +16,7 @@ namespace Ej1POO_ProyectoConsolaVehiculos
         //Implementación métodos públicos de la clase abstracta
         public override void Detenerse()
         {
-            Console.WriteLine("Implementación método detener en avión.");
+            Console.WriteLine("Implementación método detenerse en avión.");
         }
 
         //Implementación métodos públicos de la clase abstracta
