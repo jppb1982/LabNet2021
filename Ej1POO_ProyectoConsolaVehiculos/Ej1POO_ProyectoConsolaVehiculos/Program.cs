@@ -25,7 +25,7 @@ namespace Ej1POO_ProyectoConsolaVehiculos
             Transporte avion = new Avion();
 
             //Concepto aplicado: Herencia
-            avion.Detenerse();
+            avion.Avanzar();
             avion.Detenerse();
         }
 
