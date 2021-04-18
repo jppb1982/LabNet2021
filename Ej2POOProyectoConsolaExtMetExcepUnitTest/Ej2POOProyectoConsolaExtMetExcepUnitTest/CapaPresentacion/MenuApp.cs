@@ -1,5 +1,4 @@
-﻿using Ej2POOProyectoConsolaExtMetExcepUnitTest.CapaLogica;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -46,9 +45,10 @@ namespace Ej2POOProyectoConsolaExtMetExcepUnitTest.CapaPresentacion
                         ExcepcionPersonalizadaPresentacion.ConsolaLogicExcepcionPersonalizada();
                         break;
                     case 0:
-                        Salir();        
+                        Salir();
                         break;
                     default:
+                        Console.Clear();
                         Console.WriteLine("Elija entre una de las opciones presentes.");
                         break;
                 }

@@ -21,7 +21,7 @@ namespace Ej2POOProyectoConsolaExtMetExcepUnitTest.CapaLogica
             }
             catch (IndexOutOfRangeException)
             {
-                throw new ExcepcionPersonalizada("Esta es una exceptión personalizada. Su array está fuera de los límites.");
+                throw new ExcepcionPersonalizada("Esta es una exceptión personalizada. \n\tSu array está fuera de los límites.");
             }
 
         }

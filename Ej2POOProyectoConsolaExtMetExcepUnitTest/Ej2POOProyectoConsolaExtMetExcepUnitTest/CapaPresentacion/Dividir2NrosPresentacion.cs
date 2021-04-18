@@ -10,7 +10,6 @@ namespace Ej2POOProyectoConsolaExtMetExcepUnitTest.CapaPresentacion
     {
         public static void ConsolaDividir2Nros()
         {
-
             StringBuilder presentacionNrosDividir = new StringBuilder();
             presentacionNrosDividir.AppendLine("¡Bienvenido a la división de 2 números!");
             presentacionNrosDividir.AppendLine("\n\t-> Ingrese su dividendo:");
@@ -28,12 +27,9 @@ namespace Ej2POOProyectoConsolaExtMetExcepUnitTest.CapaPresentacion
             }
             catch (DivideByZeroException divByZerExc)
             {
-                Console.WriteLine("\n5Solo Chuck Norris divide por cero!");
+                Console.WriteLine("\nSolo Chuck Norris divide por cero!");
                 Console.WriteLine(divByZerExc.Message + "\n");
             }
-
         }
-
-       
     }
 }
