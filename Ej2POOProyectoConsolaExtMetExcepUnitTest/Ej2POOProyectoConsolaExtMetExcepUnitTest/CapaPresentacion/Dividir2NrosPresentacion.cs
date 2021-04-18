@@ -1,4 +1,5 @@
 ﻿using Ej2POOProyectoConsolaExtMetExcepUnitTest.CapaLogica;
+using Ej2POOProyectoConsolaExtMetExcepUnitTest.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,14 +12,14 @@ namespace Ej2POOProyectoConsolaExtMetExcepUnitTest.CapaPresentacion
         {
 
             StringBuilder presentacionNrosDividir = new StringBuilder();
-            presentacionNrosDividir.AppendLine("¡Bienvenido a la División de 2 números!");
+            presentacionNrosDividir.AppendLine("¡Bienvenido a la división de 2 números!");
             presentacionNrosDividir.AppendLine("\n\t-> Ingrese su dividendo:");
             Console.WriteLine(presentacionNrosDividir.ToString());
-            int dividendo = ObtenerValorValido();
+            int dividendo = IngresoNumericoDatosHelper.ObtenerValorEnteroValido();
 
             Console.WriteLine("\t-> Ingrese su divisor");
 
-            int divisor = ObtenerValorValido();
+            int divisor = IngresoNumericoDatosHelper.ObtenerValorEnteroValido();
             Double res = 0;
             try
             {
@@ -33,26 +34,6 @@ namespace Ej2POOProyectoConsolaExtMetExcepUnitTest.CapaPresentacion
 
         }
 
-        public static int ObtenerValorValido()
-        {
-            bool pudoParsear = false;
-            int valor = 0;
-
-            do
-            {
-                pudoParsear = int.TryParse(Console.ReadLine(), out int value);
-                if (!pudoParsear)
-                {
-                    Console.WriteLine("\nSeguro Ingreso una letra o no ingreso nada!\n");
-                }
-                else
-                {
-                    valor = value;
-                }
-            } while (pudoParsear == false);
-
-            return valor;
-
-        }
+       
     }
 }

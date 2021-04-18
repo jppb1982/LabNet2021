@@ -31,7 +31,7 @@ namespace Ej2POOProyectoConsolaExtMetExcepUnitTest.CapaPresentacion
                 {
                     case 1:
                         Console.Clear();
-                        //DividirPorCero();
+                        DivisionDeNumeroUnicoPresentacion.ConsolaDivideNumero();
                         break;
                     case 2:
                         Console.Clear();
