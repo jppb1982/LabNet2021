@@ -43,10 +43,10 @@ namespace Ej2POOProyectoConsolaExtMetExcepUnitTest.CapaPresentacion
                         break;
                     case 4:
                         Console.Clear();
-                        //ExcepcionPersonalizada();
+                        ExcepcionPersonalizadaPresentacion.ConsolaLogicExcepcionPersonalizada();
                         break;
                     case 0:
-                        Salir();        //Ver si hay alguna otra opción de cómo salir
+                        Salir();        
                         break;
                     default:
                         Console.WriteLine("Elija entre una de las opciones presentes.");
@@ -61,7 +61,6 @@ namespace Ej2POOProyectoConsolaExtMetExcepUnitTest.CapaPresentacion
                 Console.WriteLine(formatExc.Message);
                 Console.WriteLine("Vuelva a intentarlo.\n" +
                     "***********************************************************************************");
-
             }
             catch (OverflowException overflowExc)
             {
@@ -70,19 +69,15 @@ namespace Ej2POOProyectoConsolaExtMetExcepUnitTest.CapaPresentacion
                 Console.WriteLine(overflowExc.Message);
                 Console.WriteLine("Vuelva a intentarlo.\n" +
                     "***********************************************************************************");
-
             }
             finally
             {
                 DesplegarMenu();
             }
-
-
         }
 
         private static void Salir()
         {
-
             Console.Clear();
             Console.WriteLine("¡Adios!\n\tPresione una tecla para salir");
             Environment.Exit(0);
