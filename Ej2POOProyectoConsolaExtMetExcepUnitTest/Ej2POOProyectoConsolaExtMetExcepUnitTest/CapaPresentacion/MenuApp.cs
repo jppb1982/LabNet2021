@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ej2POOProyectoConsolaExtMetExcepUnitTest.CapaLogica;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -18,7 +19,6 @@ namespace Ej2POOProyectoConsolaExtMetExcepUnitTest.CapaPresentacion
             Console.WriteLine(presentacionMenu.ToString());
 
             SeleccionarOpcion();
-
         }
 
         private static void SeleccionarOpcion()
@@ -39,7 +39,7 @@ namespace Ej2POOProyectoConsolaExtMetExcepUnitTest.CapaPresentacion
                         break;
                     case 3:
                         Console.Clear();
-                        //LogicMethod();
+                        LogicPresentacion.ConsolaLogic();
                         break;
                     case 4:
                         Console.Clear();
