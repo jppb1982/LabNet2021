@@ -12,7 +12,7 @@ namespace Ej2POOProyectoConsolaExtMetExcepUnitTest.CapaPresentacion
         {
             StringBuilder presentacionLogic = new StringBuilder();
             presentacionLogic.AppendLine("¡Bienvenido a la carga fallida de un array!");
-            presentacionLogic.AppendLine("\nA continuación se mostrará qué sucede cuando se cargar un array con más elementos de los permitidos.");
+            presentacionLogic.AppendLine("\nA continuación se mostrará qué sucede cuando se carga un array con más elementos de los permitidos.");
             Console.WriteLine(presentacionLogic.ToString());
 
             try
