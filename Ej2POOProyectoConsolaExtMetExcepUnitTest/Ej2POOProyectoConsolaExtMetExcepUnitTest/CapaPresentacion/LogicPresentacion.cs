@@ -21,9 +21,8 @@ namespace Ej2POOProyectoConsolaExtMetExcepUnitTest.CapaPresentacion
             }
             catch (Exception e)
             {
-                 Console.WriteLine($"---> El mensaje de la excepción es: {e.Message}\n---> El tipo de excepción es {e.GetType()}.\n");
-            }
-            
+                 Console.WriteLine($"---> El mensaje de la excepción es: {e.Message}\n---> El tipo de excepción es: {e.GetType()}.\n");
+            }    
         }
     }
 }
