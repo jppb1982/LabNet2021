@@ -18,7 +18,7 @@ namespace Ej2POOProyectoConsolaExtMetExcepUnitTest.CapaPresentacion
             Console.WriteLine("\t-> Ingrese su divisor");
 
             int divisor = IngresoNumericoDatosHelper.ObtenerValorEnteroValido();
-            Double res = 0;
+            Double res;
             try
             {
                 res = Dividir2NrosLogica.DivideNros(dividendo, divisor);

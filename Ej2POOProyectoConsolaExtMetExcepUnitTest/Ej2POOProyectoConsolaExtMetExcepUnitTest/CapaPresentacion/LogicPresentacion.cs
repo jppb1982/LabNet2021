@@ -1,7 +1,5 @@
 ﻿using Ej2POOProyectoConsolaExtMetExcepUnitTest.CapaLogica;
-using Ej2POOProyectoConsolaExtMetExcepUnitTest.Helpers;
 using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace Ej2POOProyectoConsolaExtMetExcepUnitTest.CapaPresentacion
