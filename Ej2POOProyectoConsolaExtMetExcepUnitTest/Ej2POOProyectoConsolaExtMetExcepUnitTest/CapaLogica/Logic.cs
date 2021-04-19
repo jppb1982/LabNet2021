@@ -1,11 +1,8 @@
-﻿using Ej2POOProyectoConsolaExtMetExcepUnitTest.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 
 namespace Ej2POOProyectoConsolaExtMetExcepUnitTest.CapaLogica
 {
-    class Logic 
+    public class Logic 
     {
         public static void CargaFallidaArray()
         {

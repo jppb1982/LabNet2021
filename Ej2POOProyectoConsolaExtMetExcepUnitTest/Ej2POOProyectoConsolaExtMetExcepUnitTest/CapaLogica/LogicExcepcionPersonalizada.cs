@@ -1,11 +1,9 @@
 ﻿using Ej2POOProyectoConsolaExtMetExcepUnitTest.Helpers;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Ej2POOProyectoConsolaExtMetExcepUnitTest.CapaLogica
 {
-    class ExcepcionPersonalizadaPresentacion
+    public class ExcepcionPersonalizadaPresentacion
     {
         public static void CargaFallidaArray()
         {
