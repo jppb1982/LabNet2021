@@ -58,7 +58,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SolucionEF\EFEntities\EFEntities.csproj">
+    <ProjectReference Include="..\EFEntities\EFEntities.csproj">
       <Project>{c1008758-685e-4e0b-a706-05e75b461dc6}</Project>
       <Name>EFEntities</Name>
     </ProjectReference>

@@ -63,10 +63,10 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EFCapaDatos\EFCapaDatos.csproj">
-      <Project>{6D577793-FC6A-474D-9EAB-BBB4C8512E17}</Project>
+      <Project>{6d577793-fc6a-474d-9eab-bbb4c8512e17}</Project>
       <Name>EFCapaDatos</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SolucionEF\EFEntities\EFEntities.csproj">
+    <ProjectReference Include="..\EFEntities\EFEntities.csproj">
       <Project>{C1008758-685E-4E0B-A706-05E75B461DC6}</Project>
       <Name>EFEntities</Name>
     </ProjectReference>

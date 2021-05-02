@@ -62,7 +62,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\EFCapaLogica\EFCapaLogica.csproj">
+    <ProjectReference Include="..\EFCapaLogica\EFCapaLogica.csproj">
       <Project>{f25a796f-823d-4655-a0c7-5fe6248d6e5f}</Project>
       <Name>EFCapaLogica</Name>
     </ProjectReference>
