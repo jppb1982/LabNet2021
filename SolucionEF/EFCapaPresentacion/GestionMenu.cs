@@ -74,6 +74,7 @@ namespace EFCapaPresentacion
             int seleccionSubMenu = HelperValidaciones.ObtenerValorEnteroValido();
             LogicaProductos objLogicaProducto = new LogicaProductos();
             LogicaCategorias objLogicaCategoria = new LogicaCategorias();
+            LogicaProveedores objLogicaProveedor = new LogicaProveedores();
 
             switch (seleccionSubMenu)
             {
@@ -101,7 +102,7 @@ namespace EFCapaPresentacion
                 case 3:
                     if (eleccionMenuPrincipal == 1)
                     {
-                        abmPresentacionProveedores.ListarProveedores();
+                        abmPresentacionProveedores.ListarProveedores(objLogicaProveedor.ObtenerTodos());
                     }
                     else
                     {
@@ -172,8 +173,7 @@ namespace EFCapaPresentacion
                             abmPresentacionCategorias.EliminacionCategoria();
                             break;
                         case 3:
-                            //
-                            //abmPresentacionProveedores.EliminacionProveedor();
+                            abmPresentacionProveedores.EliminacionProveedor();
                             break;
                     }
                     break;
@@ -181,10 +181,13 @@ namespace EFCapaPresentacion
                     switch (seleccionSubMenuABM)
                     {
                         case 1:
+                            abmPresentacionProductos.ActualizacionProducto();
                             break;
                         case 2:
+                          //  abmPresentacionCategorias.ActualizacionCategoria();
                             break;
                         case 3:
+                           // abmPresentacionProveedores.ActualizacionProveedores();
                             break;
                     }
                     break;

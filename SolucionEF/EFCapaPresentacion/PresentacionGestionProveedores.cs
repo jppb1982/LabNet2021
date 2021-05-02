@@ -10,16 +10,17 @@ namespace EFCapaPresentacion
 {
     public class PresentacionGestionProveedores
     {
-        public void ListarProveedores()
+        private readonly LogicaProveedores objLogicaProveedores = new LogicaProveedores();
+        public void ListarProveedores(List<Suppliers> listaProveedores)
         {
             Console.Clear();
             Console.WriteLine("Listado de Proveedores:\n");
-            Console.WriteLine($"\nEmpresa\t\t\t\tNombre de contacto\t\t\t\tTeléfono");
-            LogicaProveedores logicaProveedores = new LogicaProveedores();
+            Console.WriteLine($"\nID\tEmpresa\t\t\t\tNombre de contacto\t\t\t\tTeléfono");
+            
 
-            foreach (Suppliers proveedor in logicaProveedores.ObtenerTodos())
+            foreach (Suppliers proveedor in listaProveedores)
             {
-                Console.WriteLine($"{proveedor.CompanyName}\t\t\t\t{proveedor.ContactName}\t\t\t\t{proveedor.Phone}");
+                Console.WriteLine($"{proveedor.SupplierID}\t{proveedor.CompanyName}\t\t\t\t{proveedor.ContactName}\t\t\t\t{proveedor.Phone}");
             }
             Console.ReadLine();
         }
@@ -48,15 +49,44 @@ namespace EFCapaPresentacion
             elProveedor.CompanyName = cadenaIngresadaProveedor;
 
             //Se guarda la proveedor
-            LogicaProveedores objLogicaProveedor = new LogicaProveedores();
             Console.Clear();
-            if (objLogicaProveedor.Agregar(elProveedor))
+            if (objLogicaProveedores.Agregar(elProveedor))
             {
                 Console.WriteLine("El proveedor fue ingresado con éxito\n");
             }
             else
             {
                 Console.WriteLine("No se pudo ingresar la proveedor\n");
+            }
+        }
+
+        public void EliminacionProveedor()
+        {
+            Console.Clear();
+            Console.WriteLine("Ingrese el nombre del Proveedor (Puede ingresar las primeras letras solamente)");
+            String ProveedorEliminar = Console.ReadLine();
+
+            List<Suppliers> listaFiltradaProveedorEliminar = objLogicaProveedores.EncontrarProveedoresPorNombre(ProveedorEliminar);
+            if (listaFiltradaProveedorEliminar != null)
+            {
+
+                ListarProveedores(listaFiltradaProveedorEliminar);
+                Console.Write("Ingrese el 'ID' del Proveedor que desea eliminar: ");
+                int idProveedorEliminar = HelperValidaciones.ObtenerValorEnteroValido();
+
+                if (objLogicaProveedores.Borrar(idProveedorEliminar))
+                {
+                    Console.WriteLine("El Proveedor fue eliminado con éxito\n");
+                }
+                else
+                {
+                    Console.WriteLine("No se pudo eliminar el Proveedor\n");
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("No se encontro ningún Proveedor.");
             }
         }
 

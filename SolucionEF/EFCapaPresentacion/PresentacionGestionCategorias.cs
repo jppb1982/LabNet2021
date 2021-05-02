@@ -10,14 +10,14 @@ namespace EFCapaPresentacion
 {
     public class PresentacionGestionCategorias
     {
-        LogicaCategorias objLogicaCategoria = new LogicaCategorias();
+        private readonly LogicaCategorias objLogicaCategoria = new LogicaCategorias();
         public void ListarCategorias(List<Categories> listaCategoria)
         {
             Console.Clear();
             Console.WriteLine("Listado de Categorias:\n");
             Console.WriteLine($"\nID\tNombre\t\t\t\tDescripción");
             
-            foreach (Categories categoria in objLogicaCategoria.ObtenerTodos())
+            foreach (Categories categoria in listaCategoria)
             {
                 Console.WriteLine($"{categoria.CategoryID}\t{categoria.CategoryName}\t\t\t\t{categoria.Description}");
             }

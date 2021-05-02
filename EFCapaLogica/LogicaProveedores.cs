@@ -88,5 +88,10 @@ namespace EFCapaLogica
                 return 1;
             }
         }
+
+        public List<Suppliers> EncontrarProveedoresPorNombre(String proveedor)
+        {
+            return context.Suppliers.Where(p => p.CompanyName.Contains(proveedor)).ToList();
+        }
     }
 }
