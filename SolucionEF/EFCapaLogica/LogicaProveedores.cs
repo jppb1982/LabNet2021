@@ -23,7 +23,6 @@ namespace EFCapaLogica
                 {
                     proveedorActualizar.CompanyName = elemento.CompanyName;
                     proveedorActualizar.ContactName = elemento.ContactName;
-                    proveedorActualizar.Phone = elemento.Phone;
                     context.SaveChanges();
                     return true;
                 }

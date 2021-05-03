@@ -11,7 +11,7 @@ namespace EFCapaPresentacion
         static void Main(string[] args)
         {
             GestionMenu menuPrincipal = new GestionMenu();
-            menuPrincipal.DesplegarMenu();   
+            menuPrincipal.DesplegarMenu();
         }
     }
 }

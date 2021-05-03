@@ -21,9 +21,9 @@ namespace EFCapaLogica
                 }
                 else
                 {
-                    productoActualizar.ProductName= elemento.ProductName;
-                    productoActualizar.QuantityPerUnit= elemento.QuantityPerUnit;
-                    productoActualizar.UnitPrice= elemento.UnitPrice;
+                    productoActualizar.ProductName = elemento.ProductName;
+                    productoActualizar.QuantityPerUnit = elemento.QuantityPerUnit;
+                    productoActualizar.UnitPrice = elemento.UnitPrice;
                     context.SaveChanges();
                     return true;
                 }
@@ -36,7 +36,7 @@ namespace EFCapaLogica
 
         public bool Agregar(Products elemento)
         {
-            elemento.ProductID= OtenerProximoId();
+            elemento.ProductID = OtenerProximoId();
             try
             {
                 context.Products.Add(elemento);
@@ -89,9 +89,9 @@ namespace EFCapaLogica
             }
         }
 
-        public List<Products> EncontrarProductoPorNombre(String producto) 
+        public List<Products> EncontrarProductoPorNombre(String producto)
         {
             return context.Products.Where(p => p.ProductName.Contains(producto)).ToList();
         }
     }
-} 
+}

@@ -184,10 +184,10 @@ namespace EFCapaPresentacion
                             abmPresentacionProductos.ActualizacionProducto();
                             break;
                         case 2:
-                          //  abmPresentacionCategorias.ActualizacionCategoria();
+                            abmPresentacionCategorias.ActualizacionCategoria();
                             break;
                         case 3:
-                           // abmPresentacionProveedores.ActualizacionProveedores();
+                            abmPresentacionProveedores.ActualizacionProveedor();
                             break;
                     }
                     break;

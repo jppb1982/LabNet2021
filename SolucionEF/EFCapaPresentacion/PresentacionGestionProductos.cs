@@ -13,13 +13,17 @@ namespace EFCapaPresentacion
         private readonly LogicaProductos objLogicaProducto = new LogicaProductos();
         public void ListarProductos(List<Products> listaProductos)
         {
+            String nombre = "Nombre".PadRight(40);
+            String presentacion = "Presentación".PadRight(20);
             Console.Clear();
             Console.WriteLine("Listado de Productos:\n");
-            Console.WriteLine($"\nId\tNombre\t\t\t\t\tPresentación\t\t\t\tPrecio\n");
+
+
+            Console.WriteLine($"\nId\t{nombre}\t{presentacion}\tPrecio\n");
 
             foreach (Products producto in listaProductos)
             {
-                Console.WriteLine($"{producto.ProductID}\t{producto.ProductName}\t\t\t\t{producto.QuantityPerUnit}\t\t\t\t{producto.UnitPrice}");
+                Console.WriteLine($"{producto.ProductID}\t{(producto.ProductName == null ? "-" : producto.ProductName).PadRight(40)}\t{(producto.QuantityPerUnit==null?"-": producto.QuantityPerUnit).PadRight(20)}\t{producto.UnitPrice}");
             }
 
 
@@ -70,7 +74,7 @@ namespace EFCapaPresentacion
         public void EliminacionProducto()
         {
             Console.Clear();
-            Console.WriteLine("Ingrese el nombre del producto (Puede ingresar las primeras letras solamente)");
+            Console.WriteLine("Ingrese el nombre del producto (puede ingresar cualquier parte del texto a buscar )");
             String productoEliminar = Console.ReadLine();
 
             List<Products> listaFiltradaProductoEliminar = objLogicaProducto.EncontrarProductoPorNombre(productoEliminar);
@@ -100,7 +104,7 @@ namespace EFCapaPresentacion
         public void ActualizacionProducto()
         {
             Console.Clear();
-            Console.WriteLine("Ingrese el nombre del producto (Puede ingresar las primeras letras solamente)");
+            Console.WriteLine("Ingrese el nombre del producto (puede ingresar cualquier parte del texto a buscar )");
             String nombreProductoActualizar = Console.ReadLine();
 
             List<Products> listaFiltradaProductoActualizar = objLogicaProducto.EncontrarProductoPorNombre(nombreProductoActualizar);
@@ -166,17 +170,19 @@ namespace EFCapaPresentacion
                     Console.WriteLine("Ingrese el nuevo precio del producto.");
 
                     productoActualizar.UnitPrice = HelperValidaciones.ObtenerValorDecimalValido();
+
+                    Console.Clear();
+                    if (objLogicaProducto.Actualizar(productoActualizar))
+                    {
+                        Console.WriteLine("El producto fue actualizado con éxito\n");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No se pudo actualizar el producto\n");
+                    }
                 }
 
-                Console.Clear();
-                if (objLogicaProducto.Actualizar(productoActualizar))
-                {
-                    Console.WriteLine("El producto fue actualizado con éxito\n");
-                }
-                else
-                {
-                    Console.WriteLine("No se pudo actualizar el producto\n");
-                }
+
 
             }
             else

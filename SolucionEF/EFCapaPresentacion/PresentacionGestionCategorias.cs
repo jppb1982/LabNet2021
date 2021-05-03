@@ -13,13 +13,14 @@ namespace EFCapaPresentacion
         private readonly LogicaCategorias objLogicaCategoria = new LogicaCategorias();
         public void ListarCategorias(List<Categories> listaCategoria)
         {
+            String nombre = "Nombre".PadRight(15);
             Console.Clear();
             Console.WriteLine("Listado de Categorias:\n");
-            Console.WriteLine($"\nID\tNombre\t\t\t\tDescripción");
-            
+            Console.WriteLine($"\nID\t{nombre}\tDescripción\n");
+
             foreach (Categories categoria in listaCategoria)
             {
-                Console.WriteLine($"{categoria.CategoryID}\t{categoria.CategoryName}\t\t\t\t{categoria.Description}");
+                Console.WriteLine($"{categoria.CategoryID}\t{categoria.CategoryName.PadRight(15)}\t{categoria.Description}");
             }
             Console.ReadLine();
         }
@@ -62,7 +63,7 @@ namespace EFCapaPresentacion
         public void EliminacionCategoria()
         {
             Console.Clear();
-            Console.WriteLine("Ingrese el nombre del Categoria (Puede ingresar las primeras letras solamente)");
+            Console.WriteLine("Ingrese el nombre del Categoria (puede ingresar cualquier parte del texto a buscar )");
             String CategoriaEliminar = Console.ReadLine();
 
             List<Categories> listaFiltradaCategoriaEliminar = objLogicaCategoria.EncontrarCategoriaPorNombre(CategoriaEliminar);
@@ -88,5 +89,77 @@ namespace EFCapaPresentacion
                 Console.WriteLine("No se encontro ningún Categoria.");
             }
         }
+
+        public void ActualizacionCategoria()
+        {
+            Console.Clear();
+            Console.WriteLine("Ingrese el nombre de la categoria (puede ingresar cualquier parte del texto a buscar )");
+            String nombreCategoriaActualizar = Console.ReadLine();
+
+            List<Categories> listaFiltradaCategoriaActualizar = objLogicaCategoria.EncontrarCategoriaPorNombre(nombreCategoriaActualizar);
+            if (listaFiltradaCategoriaActualizar != null)
+            {
+                ListarCategorias(listaFiltradaCategoriaActualizar);
+                Console.Write("\n\nIngrese el 'ID' de la Categoria que desea actualizar: ");
+                int idCategoriaActualizar = HelperValidaciones.ObtenerValorEnteroValido();
+                Categories CategoriaActualizar = listaFiltradaCategoriaActualizar.SingleOrDefault(c => c.CategoryID == idCategoriaActualizar);
+
+                if (CategoriaActualizar == null)
+                {
+                    Console.Clear();
+                    Console.WriteLine("El Categoria no se encuentra.");
+                }
+                else
+                {
+                    //Cargar los valores a actualizar
+
+                    //Ingreso nuevo nombre de Categoria
+                    bool valorAceptado;
+                    String cadenaIngresada;
+
+                    Console.Clear();
+                    Console.Write("Ingrese el nuevo nombre de la Categoría: ");
+
+                    do
+                    {
+                        cadenaIngresada = Console.ReadLine();
+                        valorAceptado = cadenaIngresada.LongitudValida(15);
+                        if (valorAceptado == false)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Ingrese una cadena con un máximo de 15 caracteres.");
+                        }
+
+                    } while (valorAceptado == false);
+
+                    CategoriaActualizar.CategoryName = cadenaIngresada;
+
+
+                    //Ingreso nueva descripción de Categoría
+                    Console.Clear();
+                    Console.Write("Ingrese la nueva descripción de la Categoría: ");
+
+                    CategoriaActualizar.Description = Console.ReadLine();
+
+
+
+                    Console.Clear();
+                    if (objLogicaCategoria.Actualizar(CategoriaActualizar))
+                    {
+                        Console.WriteLine("La Categoría fue actualizada con éxito\n");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No se pudo actualizar la Categoría\n");
+                    }
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("No se encontro ningún Categoría.");
+            }
+        }
+
     }
 }

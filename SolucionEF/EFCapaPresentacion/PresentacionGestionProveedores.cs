@@ -10,17 +10,19 @@ namespace EFCapaPresentacion
 {
     public class PresentacionGestionProveedores
     {
+        String nombre = "Empresa".PadRight(40);
+        String contacto = "Nombre de contacto".PadRight(30);
         private readonly LogicaProveedores objLogicaProveedores = new LogicaProveedores();
         public void ListarProveedores(List<Suppliers> listaProveedores)
         {
             Console.Clear();
             Console.WriteLine("Listado de Proveedores:\n");
-            Console.WriteLine($"\nID\tEmpresa\t\t\t\tNombre de contacto\t\t\t\tTeléfono");
-            
+            Console.WriteLine($"\nID\t{nombre}\t{contacto}\tTeléfono\n");
+
 
             foreach (Suppliers proveedor in listaProveedores)
             {
-                Console.WriteLine($"{proveedor.SupplierID}\t{proveedor.CompanyName}\t\t\t\t{proveedor.ContactName}\t\t\t\t{proveedor.Phone}");
+                Console.WriteLine($"{proveedor.SupplierID}\t{proveedor.CompanyName.PadRight(40)}\t{(proveedor.ContactName == null ? "-" : proveedor.ContactName).PadRight(30)}\t{proveedor.Phone}");
             }
             Console.ReadLine();
         }
@@ -63,7 +65,7 @@ namespace EFCapaPresentacion
         public void EliminacionProveedor()
         {
             Console.Clear();
-            Console.WriteLine("Ingrese el nombre del Proveedor (Puede ingresar las primeras letras solamente)");
+            Console.WriteLine("Ingrese el nombre del Proveedor (puede ingresar cualquier parte del texto a buscar )");
             String ProveedorEliminar = Console.ReadLine();
 
             List<Suppliers> listaFiltradaProveedorEliminar = objLogicaProveedores.EncontrarProveedoresPorNombre(ProveedorEliminar);
@@ -89,6 +91,93 @@ namespace EFCapaPresentacion
                 Console.WriteLine("No se encontro ningún Proveedor.");
             }
         }
+
+
+
+
+        public void ActualizacionProveedor()
+        {
+            Console.Clear();
+            Console.WriteLine("Ingrese el nombre del Proveedor (puede ingresar cualquier parte del texto a buscar )");
+            String nombreProveedorActualizar = Console.ReadLine();
+
+            List<Suppliers> listaFiltradaProveedorActualizar = objLogicaProveedores.EncontrarProveedoresPorNombre(nombreProveedorActualizar);
+            if (listaFiltradaProveedorActualizar != null)
+            {
+                ListarProveedores(listaFiltradaProveedorActualizar);
+                Console.Write("\n\nIngrese el 'ID' del Proveedor que desea actualizar: ");
+                int idProveedorActualizar = HelperValidaciones.ObtenerValorEnteroValido();
+                Suppliers ProveedorActualizar = listaFiltradaProveedorActualizar.SingleOrDefault(p => p.SupplierID == idProveedorActualizar);
+
+                if (ProveedorActualizar == null)
+                {
+                    Console.Clear();
+                    Console.WriteLine("El Proveedor no se encuentra.");
+                }
+                else
+                {
+                    //Cargar los valores a actualizar
+
+                    //Ingreso nuevo nombre de Proveedor
+                    bool valorAceptado;
+                    String cadenaIngresada;
+
+                    Console.Clear();
+                    Console.Write("Ingrese el nuevo nombre del Proveedor: ");
+
+                    do
+                    {
+                        cadenaIngresada = Console.ReadLine();
+                        valorAceptado = cadenaIngresada.LongitudValida(40);
+                        if (valorAceptado == false)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Ingrese una cadena con un máximo de 40 caracteres.");
+                        }
+
+                    } while (valorAceptado == false);
+
+                    ProveedorActualizar.CompanyName = cadenaIngresada;
+
+
+                    //Ingreso nuevo contacto de Proveedor
+                    Console.Clear();
+                    Console.Write("Ingrese el nuevo contacto del Proveedor: ");
+
+                    do
+                    {
+                        cadenaIngresada = Console.ReadLine();
+                        valorAceptado = cadenaIngresada.LongitudValida(30);
+                        if (valorAceptado == false)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Ingrese una cadena con un máximo de 30 caracteres.");
+                        }
+
+                    } while (valorAceptado == false);
+
+                    ProveedorActualizar.ContactName = cadenaIngresada;
+
+
+
+                    Console.Clear();
+                    if (objLogicaProveedores.Actualizar(ProveedorActualizar))
+                    {
+                        Console.WriteLine("El Proveedor fue actualizado con éxito\n");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No se pudo actualizar el Proveedor\n");
+                    }
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("No se encontro ningún Proveedor.");
+            }
+        }
+
 
     }
 }
