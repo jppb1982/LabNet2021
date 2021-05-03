@@ -120,7 +120,7 @@ namespace EFCapaPresentacion
                     break;
             }
 
-            Console.WriteLine("\n\nPresione una tecla para volver al menú principal.");
+            Console.WriteLine("\n\nPresione enter para volver al menú principal.");
             Console.ReadLine();
             Console.Clear();
             DesplegarMenu();

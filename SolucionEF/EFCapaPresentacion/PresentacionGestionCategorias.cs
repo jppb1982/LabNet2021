@@ -22,7 +22,7 @@ namespace EFCapaPresentacion
             {
                 Console.WriteLine($"{categoria.CategoryID}\t{categoria.CategoryName.PadRight(15)}\t{categoria.Description}");
             }
-            Console.ReadLine();
+            
         }
 
         public void AltaCategoria()
@@ -74,13 +74,14 @@ namespace EFCapaPresentacion
                 Console.Write("Ingrese el 'ID' de la Categoria que desea eliminar: ");
                 int idCategoriaEliminar = HelperValidaciones.ObtenerValorEnteroValido();
 
+                Console.Clear();
                 if (objLogicaCategoria.Borrar(idCategoriaEliminar))
                 {
-                    Console.WriteLine("El Categoria fue eliminado con éxito\n");
+                    Console.WriteLine("El Categoria fue eliminado con éxito");
                 }
                 else
                 {
-                    Console.WriteLine("No se pudo eliminar el Categoria\n");
+                    Console.WriteLine("No se pudo eliminar el Categoria");
                 }
 
             }

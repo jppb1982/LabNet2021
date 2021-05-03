@@ -85,13 +85,14 @@ namespace EFCapaPresentacion
                 Console.Write("\n\nIngrese el 'ID' del producto que desea eliminar: ");
                 int idProductoEliminar = HelperValidaciones.ObtenerValorEnteroValido();
 
+                Console.Clear();
                 if (objLogicaProducto.Borrar(idProductoEliminar))
                 {
-                    Console.WriteLine("El producto fue eliminado con éxito\n");
+                    Console.WriteLine("El producto fue eliminado con éxito.");
                 }
                 else
                 {
-                    Console.WriteLine("No se pudo eliminar el producto\n");
+                    Console.WriteLine("No se pudo eliminar el producto");
                 }
 
             }

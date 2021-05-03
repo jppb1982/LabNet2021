@@ -24,7 +24,7 @@ namespace EFCapaPresentacion
             {
                 Console.WriteLine($"{proveedor.SupplierID}\t{proveedor.CompanyName.PadRight(40)}\t{(proveedor.ContactName == null ? "-" : proveedor.ContactName).PadRight(30)}\t{proveedor.Phone}");
             }
-            Console.ReadLine();
+
         }
 
         public void AltaProveedor()
@@ -76,13 +76,14 @@ namespace EFCapaPresentacion
                 Console.Write("Ingrese el 'ID' del Proveedor que desea eliminar: ");
                 int idProveedorEliminar = HelperValidaciones.ObtenerValorEnteroValido();
 
+                Console.Clear();
                 if (objLogicaProveedores.Borrar(idProveedorEliminar))
                 {
-                    Console.WriteLine("El Proveedor fue eliminado con éxito\n");
+                    Console.WriteLine("El Proveedor fue eliminado con éxito");
                 }
                 else
                 {
-                    Console.WriteLine("No se pudo eliminar el Proveedor\n");
+                    Console.WriteLine("No se pudo eliminar el Proveedor");
                 }
 
             }
