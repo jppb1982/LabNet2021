@@ -1,0 +1,61 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+#contenedor {
+    background: #ECE9E6;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+}
+
+#contenido-principal {
+    margin-bottom: 1cm;
+}
+
+.formulario {
+    border-radius: 50px;
+    background: #bbd2c5;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #292e49, #536976, #bbd2c5);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #292e49, #536976, #bbd2c5);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    padding: 1cm 5cm;
+    margin: 0% 10%;
+}
+
+.datospersonales {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 100px 150px;
+
+}
+.sexo{
+    margin: 1.5cm;
+    display: grid;
+    grid-template-columns: auto auto  auto;
+    justify-items: center;
+}
+
+h1 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 1cm;
+}
+
+.input, .genero, h3, h5, h6 {
+    color: azure;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h3 {
+    text-align: center;
+}
+.botones{
+    margin: 2cm;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 150px;
+    
+}
