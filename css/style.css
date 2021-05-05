@@ -4,14 +4,21 @@
 }
 
 #contenedor {
-    background: #ECE9E6;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
+    background: #ECE9E6;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FFFFFF, #ECE9E6);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 #contenido-principal {
     margin-bottom: 1cm;
+}
+
+h1 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 1cm;
 }
 
 .formulario {
@@ -30,32 +37,25 @@
     display: grid;
     grid-template-columns: auto auto;
     gap: 100px 150px;
-
 }
-.sexo{
+
+.sexo {
     margin: 1.5cm;
     display: grid;
-    grid-template-columns: auto auto  auto;
+    grid-template-columns: auto auto auto;
     justify-items: center;
 }
 
-h1 {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    padding: 1cm;
-}
-
-.input, .genero, h3, h5, h6 {
+.genero, h6 {
     color: azure;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-h3 {
-    text-align: center;
-}
-.botones{
+.botones {
     margin: 2cm;
     display: grid;
     grid-template-columns: auto auto;
     gap: 150px;
-    
 }
+
+    

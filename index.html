@@ -8,7 +8,6 @@
     <title>Formulario de contacto</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-
     <link rel="stylesheet" href="css/style.css">
     <style type="text/css">
         .edad {
@@ -25,149 +24,92 @@
                     <h1>Formulario de contacto</h1>
                 </center>
                 <div class="formulario" style="width: 80%">
+                    <form action="https://www.neoris.com/" method="POST" id="formulario">
+                        <h6 class="h4 text-uppercase text-center my-md-5" data-aos="zoom-out">Complete con sus
+                            datos</h6>
+                        <div class="contenidoformulario">
 
-                    <form action="#" method="POST">
-                        <fieldset>
-                            <legend>
-                                <h6 class="h4 text-uppercase text-center my-md-5" data-aos="zoom-out">Complete con sus
-                                    datos</h6>
-                            </legend>
+                            <div class="row datospersonales">
 
-
-                            <div class="contenidoformulario">
-
-                                <div class="row datospersonales">
-
-                                    <div>
-                                        <input type="text" name="nombre" placeholder="NOMBRE EJ: Juan"
-                                            class="form-control font-weight-light mb-3">
-
-                                        <input type="text" name="apellido" placeholder="APELLIDO EJ: Ponce"
-                                            class="form-control font-weight-light mb-3">
-
-                                        <input type="text" name="nombre" placeholder="EDAD EJ: 20"
-                                            class="form-control font-weight-light mb-3 edad">
-
-                                        <input type="text" name="ciudad" placeholder="CIUDAD EJ: Rosario"
-                                            class="form-control font-weight-light  mb-3">
-                                    </div>
-
-                                    <div>
-                                        <input type="text" name="provincia" placeholder="PROVINCIA EJ: Santa Fe"
-                                            class="form-control font-weight-light  mb-3">
-                                        <input type="text" name="pais" placeholder="PAÍS EJ: ARGENTINA"
-                                            class="form-control font-weight-light  mb-3">
-                                        <input type="email" name="email" placeholder="E-MAIL EJ: juan@gmail.com"
-                                            class="form-control font-weight-light  mb-3">
-                                        <input type="text" name="telefono" placeholder="TELÉFONO EJ: 341 3555657"
-                                            class="form-control font-weight-light  mb-2">
-
-                                    </div>
-                                </div>
-
-
-                                <div class="row sexo">
-                                    <div class="row">
-                                        <label class="form-check-label genero" for="masculino">Masculino</label>
-                                        <input class="form-check-input" type="radio" name="genero" id="masculino"
-                                            value="masculino" checked>
-                                    </div>
-                                    <div class="row">
-                                        <label class="form-check-label genero" for="femenino">Femenino</label>
-                                        <input class="form-check-input" type="radio" name="genero" id="femenino"
-                                            value="femenino">
-                                    </div>
-                                    <div class="row">
-                                        <label class="form-check-label genero" for="otro">Otro</label>
-                                        <input class="form-check-input" type="radio" name="genero" id="otro"
-                                            value="otro">
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <input type="text" name="empresa" placeholder="EMPRESA EJ: Neoris"
+                                <div>
+                                    <input type="text" name="nombre" id="nombre" placeholder="NOMBRE EJ: Juan"
                                         class="form-control font-weight-light mb-3">
-                                </div>
-                                <div class="row">
-                                    <textarea class="form-control font-weight-light pb-2" name="mensaje" rows="12"
-                                        placeholder="DEJANOS TU MENSAJE"></textarea>
-                                </div>
-
-
-                            </div>
-                        </fieldset>
-                        <div class="row botones">
-                            
-                                <button type="button" class="btn btn-outline-light">Enviar</button>
-                            
-                                <button type="button" class="btn btn-outline-light">Limpiar</button>
-                            
-                        </div>
-                    </form>
-
-
-
-
-
-
-
-
-
-
-                    <!-- 
-                    <section id="contacto">
-                        <h6 class="h4 text-uppercase text-center my-md-5" data-aos="zoom-out">Contacto</h6>
-                        <form method="post" accept-charset="utf-8" class="formulario-contacto" action="#">
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <input type="text" name="nombre" placeholder="NOMBRE Y APELLIDO EJ: Raúl Flores"
+                                    <input type="text" name="apellido" id="apellido" placeholder="APELLIDO EJ: Ponce"
                                         class="form-control font-weight-light mb-3">
+                                    <input type="text" name="edad" placeholder="EDAD EJ: 20"
+                                        class="form-control font-weight-light mb-3 edad">
                                     <input type="text" name="ciudad" placeholder="CIUDAD EJ: Rosario"
                                         class="form-control font-weight-light  mb-3">
-                                    <input type="text" name="provincia" placeholder="PROVINCIA EJ:Buenos Aires"
+                                </div>
+
+                                <div>
+                                    <input type="text" name="provincia" placeholder="PROVINCIA EJ: Santa Fe"
                                         class="form-control font-weight-light  mb-3">
                                     <input type="text" name="pais" placeholder="PAÍS EJ: ARGENTINA"
                                         class="form-control font-weight-light  mb-3">
-                                    <input type="email" name="email" placeholder="E-MAIL"
+                                    <input type="email" name="email" placeholder="E-MAIL EJ: juan@gmail.com"
                                         class="form-control font-weight-light  mb-3">
                                     <input type="text" name="telefono" placeholder="TELÉFONO EJ: 341 3555657"
                                         class="form-control font-weight-light  mb-2">
                                 </div>
-                                <div class="col-md-7">
-                                    <div class="form-group">
-                                        <textarea class="form-control font-weight-light pb-2" name="mensaje" rows="12"
-                                            placeholder="DEJANOS TU MENSAJE"></textarea>
-                                    </div>
 
-                                </div>
-
-                                <div class="col-md-5">
-                                    <button type="button" class="btn btn-outline-light">Enviar</button>
-                                </div>
-                                <div class="col-md-7">
-                                    <button type="button" class="btn btn-outline-light">Limpiar</button>
-                                </div>
                             </div>
-                        </form>
-                    </section> -->
+
+                            <div class="row sexo">
+
+                                <div class="row">
+                                    <label class="form-check-label genero" for="masculino">Masculino</label>
+                                    <input class="form-check-input" type="radio" name="genero" id="masculino"
+                                        value="masculino" checked>
+                                </div>
+
+                                <div class="row">
+                                    <label class="form-check-label genero" for="femenino">Femenino</label>
+                                    <input class="form-check-input" type="radio" name="genero" id="femenino"
+                                        value="femenino">
+                                </div>
+
+                                <div class="row">
+                                    <label class="form-check-label genero" for="otro">Otro</label>
+                                    <input class="form-check-input" type="radio" name="genero" id="otro" value="otro">
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <input type="text" name="empresa" placeholder="EMPRESA EJ: Neoris"
+                                    class="form-control font-weight-light mb-3">
+                            </div>
+
+                            <div class="row">
+                                <textarea class="form-control font-weight-light pb-2" name="mensaje" rows="12"
+                                    placeholder="DEJANOS TU MENSAJE"></textarea>
+                            </div>
+
+                        </div>
+
+                        <div class="row botones">
+                            <input type="submit" class="btn btn-outline-light" value="Enviar">
+                            <input type="button" onclick="limpiarFormulario()" class="btn btn-outline-light"
+                                value="Limpiar">
+                        </div>
+
+                    </form>
                 </div>
             </section>
         </div>
-
         <!-- Footer -->
         <footer class="page-footer font-small blue">
-
             <!-- Copyright -->
             <div class="footer-copyright text-center py-3">© 2021 Copyright:
                 <a href="https://www.neoris.com/" target="_blank"> Neoris</a>
             </div>
             <!-- Copyright -->
-
         </footer>
         <!-- Footer -->
-
     </div>
 
+    <script src="js/js.js"></script>
 </body>
 
 </html>
