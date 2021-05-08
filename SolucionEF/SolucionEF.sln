@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCapaDatos", "EFCapaDatos\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCapaLogica", "EFCapaLogica\EFCapaLogica.csproj", "{F25A796F-823D-4655-A0C7-5FE6248D6E5F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFMVC", "EFMVC\EFMVC.csproj", "{A94A3452-EADE-42FB-B7F6-373A720D8061}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{F25A796F-823D-4655-A0C7-5FE6248D6E5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F25A796F-823D-4655-A0C7-5FE6248D6E5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F25A796F-823D-4655-A0C7-5FE6248D6E5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A94A3452-EADE-42FB-B7F6-373A720D8061}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A94A3452-EADE-42FB-B7F6-373A720D8061}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A94A3452-EADE-42FB-B7F6-373A720D8061}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A94A3452-EADE-42FB-B7F6-373A720D8061}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

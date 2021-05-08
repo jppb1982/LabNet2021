@@ -1,0 +1,32 @@
+﻿@model List<EFMVC.Models.ProductoView>
+@{
+    ViewBag.Title = "Lista de productos";
+}
+
+<p class="font-weight-bold">
+    <h1>Lista de los productos</h1>
+</p>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">NOMBRE</th>
+            <th scope="col">CANTIDAD POR UNIDAD</th>
+            <th scope="col">PRECIO POR UNIDAD</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var producto in Model)
+        {
+            <tr>
+                <th scope="row">@producto.Id </th>
+                <td>@producto.Nombre</td>
+                <td>@producto.CantidadPorUnidad</td>
+                <td>@producto.PrecioUnitario</td>
+            </tr>
+        }
+
+
+    </tbody>
+</table>
