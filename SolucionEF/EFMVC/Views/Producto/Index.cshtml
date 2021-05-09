@@ -7,6 +7,10 @@
     <h1>Lista de los productos</h1>
 </p>
 
+<div>
+    @Html.ActionLink("Agregar nuevo producto", "AltaProducto")
+</div>
+
 <table class="table">
     <thead class="thead-dark">
         <tr>
@@ -14,6 +18,8 @@
             <th scope="col">NOMBRE</th>
             <th scope="col">CANTIDAD POR UNIDAD</th>
             <th scope="col">PRECIO POR UNIDAD</th>
+            <th scope="col" colspan="3">ACCIONES</th>
+
         </tr>
     </thead>
     <tbody>
@@ -24,9 +30,14 @@
                 <td>@producto.Nombre</td>
                 <td>@producto.CantidadPorUnidad</td>
                 <td>@producto.PrecioUnitario</td>
+                <td>@Html.ActionLink("Ver", "Ver", new { id = producto.Id })</td>
+                <td>@Html.ActionLink("Actualizar", "Editar", new { id = producto.Id })</td>
+                <td>@Html.ActionLink("Eliminar", "Borrar", new { id = producto.Id })</td>
+
             </tr>
         }
 
 
     </tbody>
 </table>
+

@@ -9,10 +9,11 @@ namespace EFMVC.Controllers
 {
     public class ProductoController : Controller
     {
+        LogicaProductos logicaProductos = new LogicaProductos();
+
         // GET: Producto
         public ActionResult Index()
         {
-            LogicaProductos logicaProductos = new LogicaProductos();
             List<Products> listaProductos = logicaProductos.ObtenerTodos();
             List<ProductoView> listaVistaProducto = listaProductos.Select(p => new ProductoView
             {
@@ -24,76 +25,95 @@ namespace EFMVC.Controllers
             return View(listaVistaProducto);
         }
 
-        // GET: Producto/Details/5
-        public ActionResult Details(int id)
+        // GET: Producto/Ver/5
+        public ActionResult Ver(int id)
         {
+            Products producto = logicaProductos.BuscarProductoPorId(id);
+            ProductoView productView = new ProductoView 
+            {
+                Id = producto.ProductID,
+                Nombre = producto.ProductName,
+                CantidadPorUnidad = producto.QuantityPerUnit,
+                PrecioUnitario = (decimal)producto.UnitPrice
+            };
+            
+            return View(productView);
+        }
+
+        // GET: Producto/AltaProducto
+        public ActionResult AltaProducto()
+        {
+
             return View();
         }
 
-        // GET: Producto/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
 
-        // POST: Producto/Create
+        // POST: Producto/AltaProducto
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult AltaProducto(ProductoView producto)
         {
             try
             {
-                // TODO: Add insert logic here
+                Products p = new Products
+                {
+                    ProductID = producto.Id,
+                    ProductName = producto.Nombre,
+                    QuantityPerUnit = producto.CantidadPorUnidad,
+                    UnitPrice = producto.PrecioUnitario
+                };
+
+                logicaProductos.Agregar(p);
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return RedirectToAction("Index", "Error");
             }
         }
 
-        // GET: Producto/Edit/5
-        public ActionResult Edit(int id)
+        // GET: Producto/Editar/5
+        public ActionResult Editar(int id)
         {
-            return View();
+
+            Products producto = logicaProductos.BuscarProductoPorId(id);
+            ProductoView productoView = new ProductoView
+            {
+                Id = producto.ProductID,
+                Nombre = producto.ProductName,
+                CantidadPorUnidad = producto.QuantityPerUnit,
+                PrecioUnitario = (decimal)producto.UnitPrice,
+            };
+            return View(productoView);
         }
 
-        // POST: Producto/Edit/5
+        // POST: Producto/Editar/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Editar(int id, ProductoView producto)
         {
             try
             {
-                // TODO: Add update logic here
+                Products p = new Products();
+                p.ProductID = id;
+                p.ProductName = producto.Nombre;
+                p.UnitPrice = producto.PrecioUnitario;
+                p.QuantityPerUnit = producto.CantidadPorUnidad;
+
+                logicaProductos.Actualizar(p);
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return RedirectToAction("Index", "Error");
             }
         }
 
         // GET: Producto/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Borrar(int id)
         {
-            return View();
-        }
-
-        // POST: Producto/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            logicaProductos.Borrar(id);
+            return RedirectToAction("Index");
         }
     }
 }

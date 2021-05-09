@@ -1,0 +1,16 @@
+﻿@model EFMVC.Models.ProductoView
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Cargue su producto</h1>
+
+@using (Html.BeginForm("AltaProducto", "Producto", FormMethod.Post))
+{
+    <label>Nombre</label> @(Html.TextBoxFor(p =>p.Nombre))
+    <label>Cantidad por unidad</label> @(Html.TextBoxFor(p =>p.CantidadPorUnidad))
+    <label>Precio unitario</label> @(Html.TextBoxFor(p =>p.PrecioUnitario))
+
+    <input type="submit" value="Guardar" />
+}

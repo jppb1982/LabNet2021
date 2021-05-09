@@ -1,0 +1,18 @@
+﻿@model EFMVC.Models.ProductoView
+@{
+    ViewBag.Title = "Ver";
+}
+
+<h2>Ver</h2>
+
+@using (Html.BeginForm("Ver", "Producto"))
+{
+    <label>Nombre</label> @(Html.TextBoxFor(p => p.Nombre, new { @readonly = "readonly" }))
+    <label>Cantidad por unidad</label> @(Html.TextBoxFor(p =>p.CantidadPorUnidad, new { @readonly = "readonly" }))
+    <label>Precio unitario</label> @(Html.TextBoxFor(p =>p.PrecioUnitario, new { @readonly = "readonly" }))
+
+    @Html.ActionLink("Volver", "Index", "Producto")
+}
+
+
+

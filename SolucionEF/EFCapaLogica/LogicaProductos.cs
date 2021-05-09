@@ -10,6 +10,11 @@ namespace EFCapaLogica
 {
     public class LogicaProductos : LogicaBase, ILogica_ABM<Products>
     {
+        public Products BuscarProductoPorId(int id)
+        {
+            return context.Products.Find(id);
+
+        }
         public bool Actualizar(Products elemento)
         {
             try
