@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
+using PagedList;
 
 namespace EFMVC.Controllers
 {
@@ -14,7 +15,7 @@ namespace EFMVC.Controllers
         LogicaProductos logicaProductos = new LogicaProductos();
 
         // GET: Producto
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             try
             {
@@ -27,7 +28,10 @@ namespace EFMVC.Controllers
                     PrecioUnitario = (decimal)p.UnitPrice
                 }).ToList();
 
-                return View(listaVistaProducto);
+                int pageSize = 10;
+                int pageNumber = page ?? 1;
+  
+                return View(listaVistaProducto.ToPagedList(pageNumber,pageSize));
             }
             catch (ExcepcionPersonalizadaMVC ep)
             {

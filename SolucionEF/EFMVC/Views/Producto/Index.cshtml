@@ -1,4 +1,7 @@
-﻿@model List<EFMVC.Models.ProductoView>
+﻿@model PagedList.IPagedList<EFMVC.Models.ProductoView>
+
+@using PagedList.Mvc;
+
 @{
     ViewBag.Title = "Lista de productos";
 }
@@ -65,4 +68,10 @@
 
         </tbody>
     </table>
+
+    <br />
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new {page }))
+
 </div>
