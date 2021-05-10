@@ -1,9 +1,11 @@
 ﻿using EFCapaLogica;
 using EFEntities;
 using EFMVC.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace EFMVC.Controllers
 {
@@ -14,106 +16,161 @@ namespace EFMVC.Controllers
         // GET: Producto
         public ActionResult Index()
         {
-            List<Products> listaProductos = logicaProductos.ObtenerTodos();
-            List<ProductoView> listaVistaProducto = listaProductos.Select(p => new ProductoView
+            try
             {
-                Id = p.ProductID,
-                Nombre = p.ProductName,
-                CantidadPorUnidad = p.QuantityPerUnit,
-                PrecioUnitario = (decimal)p.UnitPrice
-            }).ToList();
-            return View(listaVistaProducto);
+                List<Products> listaProductos = logicaProductos.ObtenerTodos();
+                List<ProductoView> listaVistaProducto = listaProductos.Select(p => new ProductoView
+                {
+                    Id = p.ProductID,
+                    Nombre = p.ProductName,
+                    CantidadPorUnidad = p.QuantityPerUnit,
+                    PrecioUnitario = (decimal)p.UnitPrice
+                }).ToList();
+
+                return View(listaVistaProducto);
+            }
+            catch (ExcepcionPersonalizadaMVC ep)
+            {
+                TempData["errorMessage"] = "Error: " + ep.Message;
+                return RedirectToAction("Index", "Error");
+            }
+            catch (Exception e)
+            {
+                TempData["errorMessage"] = "Error: " + e.Message;
+                return RedirectToAction("Index", "Error");
+            }
         }
 
         // GET: Producto/Ver/5
         public ActionResult Ver(int id)
         {
-            Products producto = logicaProductos.BuscarProductoPorId(id);
-            ProductoView productView = new ProductoView 
-            {
-                Id = producto.ProductID,
-                Nombre = producto.ProductName,
-                CantidadPorUnidad = producto.QuantityPerUnit,
-                PrecioUnitario = (decimal)producto.UnitPrice
-            };
-            
-            return View(productView);
-        }
-
-        // GET: Producto/AltaProducto
-        public ActionResult AltaProducto()
-        {
-
-            return View();
-        }
-
-
-        // POST: Producto/AltaProducto
-        [HttpPost]
-        public ActionResult AltaProducto(ProductoView producto)
-        {
             try
             {
-                Products p = new Products
+                Products producto = logicaProductos.BuscarProductoPorId(id);
+                ProductoView productView = new ProductoView
                 {
-                    ProductID = producto.Id,
-                    ProductName = producto.Nombre,
-                    QuantityPerUnit = producto.CantidadPorUnidad,
-                    UnitPrice = producto.PrecioUnitario
+                    Id = producto.ProductID,
+                    Nombre = producto.ProductName,
+                    CantidadPorUnidad = producto.QuantityPerUnit,
+                    PrecioUnitario = (decimal)producto.UnitPrice
                 };
 
-                logicaProductos.Agregar(p);
-
-                return RedirectToAction("Index");
+                return View(productView);
             }
-            catch
+            catch (ExcepcionPersonalizadaMVC ep)
             {
+                TempData["errorMessage"] = "Error: " + ep.Message;
+                return RedirectToAction("Index", "Error" );
+            }
+            catch (Exception e)
+            {
+                TempData["errorMessage"] = "Error: " + e.Message;
                 return RedirectToAction("Index", "Error");
             }
         }
 
-        // GET: Producto/Editar/5
-        public ActionResult Editar(int id)
+        //GET: Producto/AltaYEdicion
+        public ActionResult AltaYEdicion(int id)
         {
-
-            Products producto = logicaProductos.BuscarProductoPorId(id);
-            ProductoView productoView = new ProductoView
+            if (id == 0)
             {
-                Id = producto.ProductID,
-                Nombre = producto.ProductName,
-                CantidadPorUnidad = producto.QuantityPerUnit,
-                PrecioUnitario = (decimal)producto.UnitPrice,
-            };
-            return View(productoView);
+                return View();
+            }
+            else
+            {
+                try
+                {
+                    Products producto = logicaProductos.BuscarProductoPorId(id);
+                    ProductoView productoView = new ProductoView
+                    {
+                        Id = producto.ProductID,
+                        Nombre = producto.ProductName,
+                        CantidadPorUnidad = producto.QuantityPerUnit,
+                        PrecioUnitario = (decimal)producto.UnitPrice,
+                    };
+                    return View(productoView);
+                }
+                catch (ExcepcionPersonalizadaMVC ep)
+                {
+                    TempData["errorMessage"] = "Error: " + ep.Message;
+                    return RedirectToAction("Index", "Error");
+                }
+                catch (Exception e)
+                {
+                    TempData["errorMessage"] = "Error: " + e.Message;
+                    return RedirectToAction("Index", "Error");
+                }
+            }
         }
 
-        // POST: Producto/Editar/5
+        //POST: Producto/AltaYEdicion
         [HttpPost]
-        public ActionResult Editar(int id, ProductoView producto)
+        public ActionResult AltaYEdicion(ProductoView productoView)
         {
-            try
+            if (ModelState.IsValid)
             {
-                Products p = new Products();
-                p.ProductID = id;
-                p.ProductName = producto.Nombre;
-                p.UnitPrice = producto.PrecioUnitario;
-                p.QuantityPerUnit = producto.CantidadPorUnidad;
+                Products producto = new Products
+                {
+                    ProductID = productoView.Id,
+                    ProductName = productoView.Nombre,
+                    QuantityPerUnit = productoView.CantidadPorUnidad,
+                    UnitPrice = productoView.PrecioUnitario
+                };
 
-                logicaProductos.Actualizar(p);
+                if (productoView.Id == 0) //Alta
+                {
+                    //En este método no se utiliza try-catch ya que la capa lógica maneja
+                    //la excepción y deuelve false en caso de no haber podido guardar el productoView
 
-                return RedirectToAction("Index");
+                    bool resultadoOk = logicaProductos.Agregar(producto);
+                    if (resultadoOk)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        TempData["errorMessage"] = "No se pudo guardar el producto. Verifique los datos ingresados.";
+                        return RedirectToAction("Index", "Error");
+                    }
+                }
+                else    //Editar
+                {
+                    //En este método no se utiliza try-catch ya que la capa lógica maneja
+                    //la excepción y deuelve false en caso de no haber podido editar el productoView
+
+                    bool resultadoOk = logicaProductos.Actualizar(producto);
+                    if (resultadoOk)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        TempData["errorMessage"] = "No se pudo actualizar el producto. Verifique los datos ingresados.";
+                        return RedirectToAction("Index", "Error");
+                    }
+                }
             }
-            catch
+            else
             {
-                return RedirectToAction("Index", "Error");
+                return View();
             }
+            
         }
-
         // GET: Producto/Delete/5
         public ActionResult Borrar(int id)
         {
-            logicaProductos.Borrar(id);
-            return RedirectToAction("Index");
+            //En este método no se utiliza try-catch ya que la capa lógica maneja
+            //la excepción y deuelve false en caso de no haber podido eliminar el producto
+            bool resultadoOk = logicaProductos.Borrar(id);
+            if (resultadoOk)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                TempData["errorMessage"] = "No se pudo eliminar el producto.";
+                return RedirectToAction("Index", "Error");
+            }
         }
     }
 }

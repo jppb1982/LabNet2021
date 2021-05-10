@@ -1,0 +1,22 @@
+﻿.contenido {
+    margin: 2cm 0cm 5cm 0cm;
+}
+
+.error-img {
+    position: relative;
+}
+.error-img img{
+    width:100%;
+}
+.error-mje {
+    word-break:break-word;
+    position: absolute;
+    left: 40%;
+    top: 30%;
+}
+.error-img p{
+    font-family:cursive;
+    color:red;
+    margin-right:75px;
+    font-size:calc(1em + 1vw);
+}

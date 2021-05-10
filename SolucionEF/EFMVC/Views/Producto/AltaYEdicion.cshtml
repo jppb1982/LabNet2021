@@ -1,0 +1,51 @@
+﻿@model EFMVC.Models.ProductoView
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model == null)
+{
+    <div class="titulo">
+        <h1 class="text-uppercase text-center my-md-5">Nuevo producto</h1>
+    </div>
+}
+else
+{
+    <div class="titulo">
+        <h1 class="text-uppercase text-center my-md-5">Editar producto</h1>
+    </div>
+}
+<hr />
+<div class="contenido">
+    @using (Html.BeginForm("AltaYEdicion", "Producto", FormMethod.Post))
+    {
+
+        <div class="form-group">
+            <label>Nombre</label>
+
+            @(Html.TextBoxFor(p => p.Nombre, new { @class= "form-control", placeholder="Nombre del producto"}))
+            @Html.ValidationMessageFor(p => p.Nombre)
+
+        </div>
+
+        <div class="form-group">
+            <label>Presentación</label>
+            @(Html.TextBoxFor(p =>p.CantidadPorUnidad, new { @class = "form-control", placeholder = "Presentación del producto" }))
+            @Html.ValidationMessageFor(p => p.CantidadPorUnidad)
+
+        </div>
+
+        <div class="form-group">
+            <label>Precio unitario</label>
+
+            @(Html.TextBoxFor(p =>p.PrecioUnitario, new { @class = "form-control", placeholder = "Precio del producto" }))
+            @Html.ValidationMessageFor(p => p.PrecioUnitario)
+
+        </div>
+
+        <br /><br />
+        <input type="submit" class="btn btn-primary" value="Guardar Cambios" />
+
+    }
+
+</div>

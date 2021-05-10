@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExcepcionPersonalizadaMVC.cs" />
     <Compile Include="HelperValidaciones.cs" />
     <Compile Include="LogicaBase.cs" />
     <Compile Include="ILogica ABM.cs" />

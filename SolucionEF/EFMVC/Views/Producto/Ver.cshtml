@@ -3,16 +3,41 @@
     ViewBag.Title = "Ver";
 }
 
-<h2>Ver</h2>
-
-@using (Html.BeginForm("Ver", "Producto"))
-{
-    <label>Nombre</label> @(Html.TextBoxFor(p => p.Nombre, new { @readonly = "readonly" }))
-    <label>Cantidad por unidad</label> @(Html.TextBoxFor(p =>p.CantidadPorUnidad, new { @readonly = "readonly" }))
-    <label>Precio unitario</label> @(Html.TextBoxFor(p =>p.PrecioUnitario, new { @readonly = "readonly" }))
-
-    @Html.ActionLink("Volver", "Index", "Producto")
-}
+<div class="titulo">
+    <h1 class="text-uppercase text-center my-md-5">Detalle del producto</h1>
+</div>
 
 
 
+<hr />
+<div class="contenido">
+    @using (Html.BeginForm("Ver", "Producto"))
+    {
+
+        <div class="form-group">
+            <label>Nombre</label>
+
+            @(Html.TextBoxFor(p => p.Nombre, new { @class= "form-control", placeholder= "Nombre del producto", @readonly = "readonly"  }))
+
+        </div>
+
+        <div class="form-group">
+            <label>Presentación</label>
+            @(Html.TextBoxFor(p =>p.CantidadPorUnidad, new { @class = "form-control", placeholder = "Presentación del producto", @readonly = "readonly" }))
+
+        </div>
+
+        <div class="form-group">
+            <label>Precio unitario</label>
+
+            @(Html.TextBoxFor(p =>p.PrecioUnitario, new { @class = "form-control", placeholder = "Precio del producto" , @readonly = "readonly"  }))
+
+        </div>
+
+        <br /><br />
+        @Html.ActionLink("Volver", "Index", "Producto",new { @class = "btn btn-primary" }) 
+
+
+    }
+
+</div>

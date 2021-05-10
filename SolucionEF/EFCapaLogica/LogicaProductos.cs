@@ -12,7 +12,16 @@ namespace EFCapaLogica
     {
         public Products BuscarProductoPorId(int id)
         {
-            return context.Products.Find(id);
+            Products producto;
+            try
+            {
+                producto = context.Products.Find(id);
+            }
+            catch (Exception e)
+            {
+                throw new ExcepcionPersonalizadaMVC(e.Message, "BuscarProductoPorId()");
+            }
+            return producto;
 
         }
         public bool Actualizar(Products elemento)
@@ -78,7 +87,16 @@ namespace EFCapaLogica
 
         public List<Products> ObtenerTodos()
         {
-            return context.Products.ToList();
+            List<Products> productos;
+            try
+            {
+                productos = context.Products.ToList();
+            }
+            catch (Exception e)
+            {
+                throw new ExcepcionPersonalizadaMVC(e.Message, "ObtenerTodos()");
+            }
+            return productos;
         }
 
         public int OtenerProximoId()
