@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace EFWebApi.Controllers
 {
@@ -75,12 +76,84 @@ namespace EFWebApi.Controllers
         {
             bool resultadoOk = logicaProductos.Borrar(id);
 
-            if (resultadoOk){
+            if (resultadoOk)
+            {
                 return Ok();
-            } else{
+            }
+            else
+            {
                 return NotFound();
             }
-            
+
         }
+
+
+        [HttpPost]
+        [ResponseType(typeof(Producto))]
+        public IHttpActionResult Insert(Producto p)
+        {
+
+            try
+            {
+                bool resultadoOk = logicaProductos.Agregar(new Products
+                {
+                    ProductName = p.Nombre,
+                    QuantityPerUnit = p.CantidadPorUnidad,
+                    UnitPrice = p.PrecioUnitario
+                });
+
+                if (resultadoOk)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return NotFound();
+                }
+
+            }
+            catch (Exception)
+            {
+
+                return NotFound();
+            }
+
+        }
+
+
+
+        [HttpPut]
+        [ResponseType(typeof(Producto))]
+        public IHttpActionResult Actualizar(Producto p)
+        {
+
+            try
+            {
+                bool resultadoOk = logicaProductos.Actualizar(new Products
+                {
+                    ProductID = p.Id,
+                    ProductName = p.Nombre,
+                    QuantityPerUnit = p.CantidadPorUnidad,
+                    UnitPrice = p.PrecioUnitario
+                });
+
+                if (resultadoOk)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return NotFound();
+                }
+
+            }
+            catch (Exception)
+            {
+
+                return NotFound();
+            }
+
+        }
+
     }
 }
