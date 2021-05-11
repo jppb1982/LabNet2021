@@ -9,11 +9,10 @@ using System.Net;
 
 namespace EFCapaLogica
 {
-    public class LogicaPais 
+    public class LogicaPais
     {
         public List<Countries> ObtenerPaisesPorIdioma(String codIdioma)
         {
-
             List<Countries> paises = new List<Countries>();
 
             try
@@ -32,16 +31,11 @@ namespace EFCapaLogica
             }
             catch (Exception e)
             {
-                throw new ExcepcionPersonalizadaMVC("Error al acceder al servicio web de paises. Detalle: " + e.Message, "ObtenerPaisesPorIdioma("+codIdioma+")");
+                throw new ExcepcionPersonalizadaMVC("Error al acceder al servicio web de paises. Detalle: " + e.Message, "ObtenerPaisesPorIdioma(" + codIdioma + ")");
             }
-
-
-
-
 
             return paises;
         }
-
 
     }
 }
