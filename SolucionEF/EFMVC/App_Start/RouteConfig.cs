@@ -17,7 +17,14 @@ namespace EFMVC
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Producto", action = "Index", id = UrlParameter.Optional }
-            );
+                );
+
+
+            routes.MapRoute(
+                name: "Pais",
+                url: "{controller}/{action}/{id}", 
+                new { controller = "Pais", action = "Index", id = UrlParameter.Optional }
+                );
         }
     }
 }

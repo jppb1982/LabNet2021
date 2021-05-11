@@ -1,0 +1,42 @@
+﻿@model PagedList.IPagedList<EFEntities.Countries>
+
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Nuestros Clientes";
+}
+
+<div class="titulo">
+    <h1 class="text-uppercase text-center my-md-5">Nuestros clientes</h1>
+</div>
+<hr />
+<h3 class="text-center my-md-5">Llegamos a todos los paises de habla hispana</h3>
+
+<div class="contenido">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">SUBREGION</th>
+                <th scope="col">NOMBRE</th>
+                <th scope="col">CAPITAL</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var pais in Model)
+            {
+                <tr>
+                    <td>@pais.Subregion</td>
+                    <td>@pais.Name </td>
+                    <td>@pais.Capital</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+    <br />
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+</div>
