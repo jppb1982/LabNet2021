@@ -1,1 +1,54 @@
-<p>lista-productos works!</p>
+<h1>Productos</h1>
+<a routerLink="agregar" class="btn btn-sm btn-success mb-2">Agregar Producto</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="width: 10%">ID</th>
+            <th style="width: 30%">Nombre</th>
+            <th style="width: 30%">Presentación</th>
+            <th style="width: 20%">Precio Unitario</th>
+            <th style="width: 30%">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let producto of productos">
+            <td>{{producto.Id}}</td>
+            <td>{{producto.Nombre}}</td>
+            <td>{{producto.CantidadPorUnidad}}</td>
+            <td>{{producto.PrecioUnitario}}</td>
+            <td>
+                <button type="button" class="btn btn-danger" (click)="onDelete(producto.Id)">Eliminar</button>
+            </td>
+        </tr>
+        <tr *ngIf="!productos">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+
+<!-- 
+    
+    --------------------------PAGINATOR-----------------------------
+
+
+    <nav aria-label="...">
+    <ul class="pagination">
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1">Previous</a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item active">
+        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#">Next</a>
+      </li>
+    </ul>
+  </nav> -->

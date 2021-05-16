@@ -9,15 +9,18 @@ import { AgregarProductoComponent } from './components/agregar-producto/agregar-
 import { DetalleProductoComponent } from './components/detalle-producto/detalle-producto.component';
 import { ListaProductosComponent } from './components/lista-productos/lista-productos.component';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from "@angular/forms";
+import {ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { VerProductoComponent } from './components/ver-producto/ver-producto.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AgregarProductoComponent,
     DetalleProductoComponent,
-    ListaProductosComponent
+    ListaProductosComponent,
+    VerProductoComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     NgbModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
