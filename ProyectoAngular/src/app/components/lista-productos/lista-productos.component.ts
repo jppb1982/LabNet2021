@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { combineAll, first } from 'rxjs/operators';
 import { AbmProductosService } from 'src/app/services/abm-productos.service';
 import { Producto } from 'src/app/models/producto';
 
@@ -28,6 +27,12 @@ export class ListaProductosComponent implements OnInit {
       }
     );
   }
+
+
+  onAdd(){
+    
+  }
+
   onDelete(id: number) {
     this.abmProductoService.Borrar(id).subscribe(res => { this.ObtenerProductos(); }
     );
