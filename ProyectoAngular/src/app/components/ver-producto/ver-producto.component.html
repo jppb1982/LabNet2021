@@ -1,27 +1,21 @@
-<div class="container">
-	<form (ngSubmit)="onSubmit()" [formGroup]="verProductoForm">
+<div class="form-container">
+	<div class="titlePcto">
+		<h1>Vista del producto</h1>
+	</div>
 
-		<h3>Vista de productos</h3>
-		
-        <label>ID</label>
-		<input type="number" formControlName="id" class="form-control" [ngClass]="{ 'is-invalid':  form.id.errors }" />
-		<div *ngIf="form.id.errors" class="invalid-feedback">
-			<div *ngIf="form.id.errors.required">El id es obligatorio</div>
-		</div>
-        
-        
-        <label>Nombre</label>
-		<input type="text" formControlName="nombre" class="form-control" readonly />
-		<label>Presentación</label>
-		<input type="text" formControlName="presentacion" class="form-control" readonly />
-		
+	<form [formGroup]="verProductoForm">
+		<div class="row justify-content-center inputPcto">
+			<label>Id</label>
+			<input type="number" formControlName="id" class="form-control" readonly />
 
-		<label>Precio</label>
-		<input type="number" formControlName="precio" class="form-control" readonly />
-		
-		
-        <div class="text-center">
-			<button class="btn btn-primary mr-1" [disabled]="verProductoForm.invalid">Buscar</button>
+			<label>Nombre</label>
+			<input type="text" formControlName="nombre" class="form-control" readonly />
+
+			<label>Presentación</label>
+			<input type="text" formControlName="presentacion" class="form-control" readonly />
+
+			<label>Precio</label>
+			<input type="number" formControlName="precio" class="form-control" readonly />
 		</div>
 	</form>
 </div>

@@ -1,21 +1,20 @@
-<div>
+<div class="contenedor">
+
+
   <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a href="#" class="navbar-brand">JP :: Practica Angular</a>
-    <div class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a routerLink="productos" class="nav-link">Productos</a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="agregar" class="nav-link">Agregar</a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="ver" class="nav-link">Ver</a>
-      </li>
+    <div class="container mt-3">
+      <a href="#" class="navbar-brand"> <i class="fas fa-home"></i> Productos</a>
     </div>
   </nav>
-
   <div class="container mt-3">
     <router-outlet></router-outlet>
   </div>
 </div>
 
+
+<footer class="text-center text-white fixed-bottom">
+  <div class="text-center p-3" style="background-color: #212529;">
+    © 2020 Copyright:
+    <a class="text-white" href="#">JuanPabloPonce</a>
+  </div>
+</footer>

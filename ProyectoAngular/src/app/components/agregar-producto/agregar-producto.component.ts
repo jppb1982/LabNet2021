@@ -2,8 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, Validators, FormBuilder, FormControlName } from "@angular/forms";
 import { Producto } from "src/app/models/producto";
 import { AbmProductosService } from "src/app/services/abm-productos.service";
-
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-agregar-producto',
@@ -15,22 +14,42 @@ export class AgregarProductoComponent implements OnInit {
   agregarProductoForm!: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder, private abmProductoService: AbmProductosService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private abmProductoService: AbmProductosService,
+    private router: Router
+  ) {
 
   }
+  ngAfterViewChecked() {
+    this.agregarProductoForm = this.formBuilder.group(
+      {
+
+        nombre: ["", Validators.maxLength(40), Validators.minLength(3), Validators.required],
+        presentacion: ["", Validators.maxLength(20)],
+        precio: ["", Validators.required]
+
+      }
+    );
+  }
+
 
   ngOnInit(): void {
     this.agregarProductoForm = this.formBuilder.group(
       {
-        nombre: ["", Validators.required],
-        presentacion: ["", Validators.required],
-        precio: ["", Validators.required]
+        // nombre: [""],
+        // presentacion: [""],
+        // precio: [""]
+
       }
 
     );
 
   }
+  ngAfterViewInit() {
 
+
+  }
   get form() {
     return this.agregarProductoForm.controls;
   }
@@ -48,6 +67,7 @@ export class AgregarProductoComponent implements OnInit {
       p.PrecioUnitario = this.agregarProductoForm.controls.precio.value;
       p.CantidadPorUnidad = this.agregarProductoForm.controls.presentacion.value;
       this.abmProductoService.Agregar(p).subscribe();
+      this.router.navigate(['/']);
     }
   }
 

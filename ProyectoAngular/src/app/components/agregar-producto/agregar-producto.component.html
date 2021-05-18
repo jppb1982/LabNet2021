@@ -1,28 +1,36 @@
-<div class="container">
+<div class="form-container">
+	<div class="titlePcto">
+		<h1>Agregue su producto</h1>
+	</div>
+
 	<form (ngSubmit)="onSubmit()" [formGroup]="agregarProductoForm">
+		<div class="row justify-content-center inputPcto">
 
-		<h3>Alta de productos</h3>
-		<label>Nombre</label>
-		<input type="text" formControlName="nombre" class="form-control" [ngClass]="{ 'is-invalid':  form.nombre.errors }" />
-		<div *ngIf="form.nombre.errors" class="invalid-feedback">
-			<div *ngIf="form.nombre.errors.required">El nombre es obligatorio</div>
-		</div>
-		<label>Presentación</label>
-		<input type="text" formControlName="presentacion" class="form-control" [ngClass]="{ 'is-invalid': form.presentacion.errors }" />
-		<div *ngIf="form.presentacion.errors" class="invalid-feedback">
-			<div *ngIf="form.presentacion.errors.required">La presentacion es obligatoria</div>
+			<label>Nombre</label>
+			<input type="text" formControlName="nombre" class="form-control"
+				[ngClass]="{ 'is-invalid':  form.nombre.errors }" />
+			<div *ngIf="form.nombre.errors" class="invalid-feedback">
+				<div *ngIf="form.nombre.errors.required">El nombre es obligatorio</div>
+			</div>
+
+			<label>Presentación</label>
+			<input type="text" formControlName="presentacion" class="form-control" />
+
+			<label>Precio</label>
+			<input type="number" formControlName="precio" class="form-control"
+				[ngClass]="{ 'is-invalid': form.precio.errors }" />
+			<div *ngIf="form.precio.errors" class="invalid-feedback">
+				<div *ngIf="form.precio.errors.required">El precio es requerido</div>
+			</div>
 		</div>
 
-		<label>Precio</label>
-		<input type="number" formControlName="precio" class="form-control" [ngClass]="{ 'is-invalid': form.precio.errors }" />
-		<div *ngIf="form.precio.errors" class="invalid-feedback">
-			<div *ngIf="form.precio.errors.required">El precio es requerido</div>
-		</div>
-
-		
-        <div class="text-center">
-			<button class="btn btn-primary mr-1" [disabled]="agregarProductoForm.invalid">Agregar</button>
-			<button class="btn btn-secondary" type="reset" (click)="onReset()">Limpiar</button>
+		<div class="row justify-content-center">
+			<div class="col text-center">
+				<button class="btn btn-primary" [disabled]="agregarProductoForm.invalid">Agregar</button>
+			</div>
+			<div class="col text-center">
+				<button class="btn btn-secondary" type="reset" (click)="onReset()">Limpiar</button>
+			</div>
 		</div>
 	</form>
 </div>

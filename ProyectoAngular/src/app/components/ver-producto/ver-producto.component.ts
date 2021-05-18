@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from "@angular/forms";
+import { ActivatedRoute, Router } from '@angular/router';
 import { Producto } from "src/app/models/producto";
 import { AbmProductosService } from "src/app/services/abm-productos.service";
 
@@ -9,21 +10,35 @@ import { AbmProductosService } from "src/app/services/abm-productos.service";
   styleUrls: ['./ver-producto.component.css']
 })
 export class VerProductoComponent implements OnInit {
-
   verProductoForm!: FormGroup;
   submitted = false;
+  id: number;
 
-  constructor(private formBuilder: FormBuilder, private abmProductoService: AbmProductosService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private abmProductoService: AbmProductosService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {
+    activatedRoute.params.subscribe(prm => {
+      console.log(`El id es: ${prm['id']}`);
+      this.id = prm['id'];
+    })
+  }
+
+  ngAfterViewInit() {
+    this.traerProductoId();
+  }
 
   ngOnInit(): void {
+
     this.verProductoForm = this.formBuilder.group(
       {
-        id: ["", Validators.required],
+        id: [""],
         nombre: [""],
         presentacion: [""],
-        precio: [""]
+        precio: [""],
       }
-
     );
   }
 
@@ -31,25 +46,20 @@ export class VerProductoComponent implements OnInit {
     return this.verProductoForm.controls;
   }
 
-  onSubmit() {
-    this.submitted = true;
-    var p: Producto = new Producto();
-    // stop here if form is invalid
-    if (this.verProductoForm.invalid) {
-      return;
-    }
-    else {
 
-      this.abmProductoService.BuscarProductoPorId(this.verProductoForm.controls.id.value).subscribe(
-        res => {
-          console.log(res);
-          p = (JSON.parse(res) as Producto);
-          this.verProductoForm.controls.nombre.setValue(p.Nombre);
-          this.verProductoForm.controls.precio.setValue(p.PrecioUnitario);
-          this.verProductoForm.controls.presentacion.setValue(p.CantidadPorUnidad);
-        }
-      );
-    }
+  traerProductoId() {
+    var p: Producto = new Producto();
+
+    this.abmProductoService.BuscarProductoPorId(this.id).subscribe(
+      res => {
+        p = (JSON.parse(res) as Producto);
+        this.verProductoForm.controls.id.setValue(p.Id);
+        this.verProductoForm.controls.nombre.setValue(p.Nombre);
+        this.verProductoForm.controls.precio.setValue(p.PrecioUnitario);
+        this.verProductoForm.controls.presentacion.setValue(p.CantidadPorUnidad);
+      }
+    );
+
   }
 
 }

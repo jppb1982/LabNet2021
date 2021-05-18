@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 
 import { AbmProductosService } from 'src/app/services/abm-productos.service';
 import { Producto } from 'src/app/models/producto';
+import { Router } from '@angular/router';
+import * as EventEmitter from 'events';
 
 @Component({
   selector: 'app-lista-productos',
@@ -11,8 +13,11 @@ import { Producto } from 'src/app/models/producto';
 
 export class ListaProductosComponent implements OnInit {
   productos!: Producto[];
+  paginaActual: number = 1;
 
-  constructor(private abmProductoService: AbmProductosService) { }
+  constructor(private abmProductoService: AbmProductosService, private router: Router) { }
+
+
 
   ngOnInit(): void {
     this.ObtenerProductos();
@@ -21,20 +26,27 @@ export class ListaProductosComponent implements OnInit {
   ObtenerProductos() {
     this.abmProductoService.ObtenerTodos().subscribe(
       res => {
-        console.log(res);
         this.productos = (JSON.parse(res) as Producto[]);
-
       }
     );
   }
 
+  navegarHaciaEditar(id: number) {
+    this.router.navigate(['/editar/' + id]);
+  }
 
-  onAdd(){
-    
+  navegarHaciaVer(id: number) {
+    this.router.navigate(['/ver/' + id]);
+  }
+
+  navegarHaciaAgregar() {
+    this.router.navigate(['/agregar']);
   }
 
   onDelete(id: number) {
     this.abmProductoService.Borrar(id).subscribe(res => { this.ObtenerProductos(); }
     );
+    this.router.navigate(['/']);
+
   }
 }

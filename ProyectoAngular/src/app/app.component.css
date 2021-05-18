@@ -1,0 +1,10 @@
+.contenedor {
+    min-height: 120vh;
+    position: relative;
+}
+
+footer {
+    background-color: red;
+    color: white;
+    padding: 0;
+}

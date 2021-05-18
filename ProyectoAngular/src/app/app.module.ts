@@ -6,21 +6,22 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgregarProductoComponent } from './components/agregar-producto/agregar-producto.component';
-import { DetalleProductoComponent } from './components/detalle-producto/detalle-producto.component';
 import { ListaProductosComponent } from './components/lista-productos/lista-productos.component';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from "@angular/forms";
-import {ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { VerProductoComponent } from './components/ver-producto/ver-producto.component';
+import { EditarProductoComponent } from './components/editar-producto/editar-producto.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     AgregarProductoComponent,
-    DetalleProductoComponent,
     ListaProductosComponent,
     VerProductoComponent,
+    EditarProductoComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +30,8 @@ import { VerProductoComponent } from './components/ver-producto/ver-producto.com
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,37 @@
+<div class="form-container">
+    <div class="titlePcto">
+        <h1>Edite su producto</h1>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" [formGroup]="editarProductoForm">
+        <div class="row justify-content-center inputPcto">
+           
+            <label>Nombre</label>
+            <input type="text" formControlName="nombre" class="form-control"
+                [ngClass]="{ 'is-invalid' : form.nombre.errors }" />
+            <div *ngIf="form.nombre.errors" class="invalid-feedback">
+                <div *ngIf="form.nombre.errors.required">El nombre es obligatorio</div>
+            </div>
+        
+            <label>Presentación</label>
+            <input type="text" formControlName="presentacion" class="form-control" />
+
+            <label>Precio</label>
+            <input type="number" formControlName="precio" class="form-control"
+                [ngClass]="{ 'is-invalid': form.precio.errors }" />
+            <div *ngIf="form.precio.errors" class="invalid-feedback">
+                <div *ngIf="form.precio.errors.required">El precio es requerido</div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col text-center">
+                <button class="btn btn-primary" [disabled]="editarProductoForm.invalid">Guardar</button>
+            </div>
+            <div class="col text-center">
+                <button class="btn btn-secondary" type="submit">Cancelar</button>
+            </div>
+        </div>
+
+    </form>
+</div>

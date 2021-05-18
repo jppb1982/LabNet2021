@@ -1,0 +1,51 @@
+.form-container {
+    font: 95% Arial, Helvetica, sans-serif;
+    max-width: 500px;
+    padding: 16px;
+    margin: 10% auto;
+    background-color: #f7f7f7;
+}
+
+.titlePcto {
+    margin-bottom: 1cm;
+}
+
+.form-container label {
+    padding: 0 5.5%;
+}
+
+.form-container h1 {
+    background: #304352;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #d7d2cc, #304352);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #d7d2cc, #304352);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    padding: 20px 0;
+    font-size: 140%;
+    font-weight: 300;
+    text-align: center;
+    color: #fff;
+    margin: -16px -16px;
+}
+
+
+.form-container input[type="text"], 
+.form-container input[type="number"] {
+    transition: all 0, 30s ease-in-out;
+    outline: none;
+    box-sizing: border-box;
+    margin-bottom: 4%;
+    border: 1px solid #ccc;
+    padding: 0.5em;
+    color: #555;
+    font: 95% Arial, Helvetica, sans-serif;
+    width: 90%;
+}
+
+.form-container input[type="text"]:focus, 
+.form-container input[type="number"]:focus {
+    box-shadow: 0 0 2px #43d1af;
+    padding: 0.75em;
+    border: 1px solid #43d1af;
+}

@@ -1,18 +1,17 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ListaProductosComponent } from './components/lista-productos/lista-productos.component';
-import { DetalleProductoComponent } from './components/detalle-producto/detalle-producto.component';
 import { AgregarProductoComponent } from './components/agregar-producto/agregar-producto.component';
 import { VerProductoComponent } from './components/ver-producto/ver-producto.component';
-
+import { EditarProductoComponent } from './components/editar-producto/editar-producto.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'productos', pathMatch: 'full' },
   { path: 'productos', component: ListaProductosComponent },
-  { path: 'producto/:id', component: DetalleProductoComponent },
   { path: 'agregar', component: AgregarProductoComponent },
-  { path: 'ver', component: VerProductoComponent }
+  { path: 'ver/:id', component: VerProductoComponent },
+  { path: 'editar/:id', component: EditarProductoComponent }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

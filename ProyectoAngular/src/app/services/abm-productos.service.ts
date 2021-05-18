@@ -26,11 +26,11 @@ export class AbmProductosService {
   }
 
   Agregar(data: Producto): Observable<Producto> {
-    return this.http.post<Producto>(urlAPI, data).pipe(tap((data: Producto) => console.log("Agregado!"))    );
+    return this.http.post<Producto>(urlAPI, data).pipe(tap((data: Producto) => console.log("¡Agregado!"))    );
   }
 
   Actualizar(id: number, data: Producto): Observable<Producto> {
-    return this.http.put<Producto>(`${urlAPI}/${id}`, data).pipe(tap((data: Producto) => console.log("Actualizado!")));
+    return this.http.put<Producto>(`${urlAPI}/${id}`, data).pipe(tap((data: Producto) => console.log("¡Actualizado!")));
   }
 
   Borrar(id: number): Observable<any> {
