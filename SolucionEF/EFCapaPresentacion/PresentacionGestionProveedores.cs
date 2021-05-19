@@ -52,14 +52,16 @@ namespace EFCapaPresentacion
 
             //Se guarda la proveedor
             Console.Clear();
-            if (objLogicaProveedores.Agregar(elProveedor))
+            try
             {
+                objLogicaProveedores.Agregar(elProveedor);
                 Console.WriteLine("El proveedor fue ingresado con éxito\n");
             }
-            else
+            catch (Exception)
             {
                 Console.WriteLine("No se pudo ingresar la proveedor\n");
             }
+            
         }
 
         public void EliminacionProveedor()
@@ -77,15 +79,16 @@ namespace EFCapaPresentacion
                 int idProveedorEliminar = HelperValidaciones.ObtenerValorEnteroValido();
 
                 Console.Clear();
-                if (objLogicaProveedores.Borrar(idProveedorEliminar))
+                try
                 {
+                    objLogicaProveedores.Borrar(idProveedorEliminar);
                     Console.WriteLine("El Proveedor fue eliminado con éxito");
                 }
-                else
+                catch (Exception)
                 {
                     Console.WriteLine("No se pudo eliminar el Proveedor");
                 }
-
+                
             }
             else
             {
@@ -162,23 +165,22 @@ namespace EFCapaPresentacion
 
 
                     Console.Clear();
-                    if (objLogicaProveedores.Actualizar(ProveedorActualizar))
+
+                    try
                     {
+                        objLogicaProveedores.Actualizar(ProveedorActualizar);
                         Console.WriteLine("El Proveedor fue actualizado con éxito\n");
                     }
-                    else
+                    catch (Exception)
                     {
                         Console.WriteLine("No se pudo actualizar el Proveedor\n");
                     }
                 }
-
             }
             else
             {
                 Console.WriteLine("No se encontro ningún Proveedor.");
             }
         }
-
-
     }
 }

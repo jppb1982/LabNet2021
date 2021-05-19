@@ -10,46 +10,45 @@ namespace EFCapaLogica
 {
     public class LogicaCategorias : LogicaBase, ILogica_ABM<Categories>
     {
-        public bool Actualizar(Categories elemento)
+        public void Actualizar(Categories elemento)
         {
             try
             {
                 Categories categoriaActualizar = context.Categories.Find(elemento.CategoryID);
                 if (categoriaActualizar == null)
                 {
-                    return false;
+                    throw new ExcepcionPersonalizadaMVC("No se encontro la categoría a actualizar ", "Actualizar(" + elemento.CategoryID + ")");
                 }
                 else
                 {
                     categoriaActualizar.CategoryName = elemento.CategoryName;
                     categoriaActualizar.Description = elemento.Description;
                     context.SaveChanges();
-                    return true;
+
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
-                return false;
+                throw new ExcepcionPersonalizadaMVC(e.Message, "Actualizar(" + elemento.CategoryID + ")");
             }
         }
 
-        public bool Agregar(Categories elemento)
+        public void Agregar(Categories elemento)
         {
             elemento.CategoryID = OtenerProximoId();
             try
             {
                 context.Categories.Add(elemento);
                 context.SaveChanges();
-                return true;
+                
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return false;
+                throw new ExcepcionPersonalizadaMVC(e.Message, "Agregar(" + elemento.CategoryID + ")");
             }
         }
 
-        public bool Borrar(int id)
+        public void Borrar(int id)
         {
 
             try
@@ -57,25 +56,33 @@ namespace EFCapaLogica
                 Categories categoriaEliminar = context.Categories.Find(id);
                 if (categoriaEliminar == null)
                 {
-                    return false;
+                    throw new ExcepcionPersonalizadaMVC("No se encontro la categoría a eliminar ", "Borrar(" + id + ")");
                 }
                 else
                 {
                     context.Categories.Remove(categoriaEliminar);
                     context.SaveChanges();
-                    return true;
+
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return false;
+                throw new ExcepcionPersonalizadaMVC(e.Message, "Borrar(" + id + ")");
             }
 
         }
 
         public List<Categories> ObtenerTodos()
         {
-            return context.Categories.ToList();
+            try
+            {
+                return context.Categories.ToList();
+            }
+            catch (Exception e)
+            {
+                throw new ExcepcionPersonalizadaMVC(e.Message, "ObtenerTodos()");
+            }
+
         }
 
         public int OtenerProximoId()

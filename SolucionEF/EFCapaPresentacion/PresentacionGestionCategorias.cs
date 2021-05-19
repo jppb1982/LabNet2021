@@ -50,13 +50,18 @@ namespace EFCapaPresentacion
 
             //Se guarda la categoría
             Console.Clear();
-            if (objLogicaCategoria.Agregar(laCategoria))
+
+
+            try
             {
+                objLogicaCategoria.Agregar(laCategoria);
                 Console.WriteLine("La categoría fue ingresada con éxito\n");
             }
-            else
+            catch (Exception)
             {
+
                 Console.WriteLine("No se pudo ingresar la categoría\n");
+                
             }
         }
 
@@ -75,15 +80,16 @@ namespace EFCapaPresentacion
                 int idCategoriaEliminar = HelperValidaciones.ObtenerValorEnteroValido();
 
                 Console.Clear();
-                if (objLogicaCategoria.Borrar(idCategoriaEliminar))
+
+                try
                 {
+                    objLogicaCategoria.Borrar(idCategoriaEliminar);
                     Console.WriteLine("El Categoria fue eliminado con éxito");
                 }
-                else
+                catch (Exception)
                 {
                     Console.WriteLine("No se pudo eliminar el Categoria");
                 }
-
             }
             else
             {
@@ -145,14 +151,18 @@ namespace EFCapaPresentacion
 
 
                     Console.Clear();
-                    if (objLogicaCategoria.Actualizar(CategoriaActualizar))
+
+                    try
                     {
+                        objLogicaCategoria.Actualizar(CategoriaActualizar);
                         Console.WriteLine("La Categoría fue actualizada con éxito\n");
                     }
-                    else
+                    catch (Exception)
                     {
                         Console.WriteLine("No se pudo actualizar la Categoría\n");
                     }
+                    
+                    
                 }
 
             }

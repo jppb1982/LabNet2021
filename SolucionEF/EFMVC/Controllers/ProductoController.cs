@@ -126,32 +126,32 @@ namespace EFMVC.Controllers
                     //En este método no se utiliza try-catch ya que la capa lógica maneja
                     //la excepción y deuelve false en caso de no haber podido guardar el productoView
 
-                    bool resultadoOk = logicaProductos.Agregar(producto);
-                    if (resultadoOk)
+                    try
                     {
+                        logicaProductos.Agregar(producto);
                         return RedirectToAction("Index");
                     }
-                    else
+                    catch (Exception e)
                     {
-                        TempData["errorMessage"] = "No se pudo guardar el producto. Verifique los datos ingresados.";
+                        TempData["errorMessage"] = "No se pudo guardar el producto. Detalle: " + e.Message;
                         return RedirectToAction("Index", "Error");
                     }
                 }
                 else    //Editar
                 {
-                    //En este método no se utiliza try-catch ya que la capa lógica maneja
-                    //la excepción y deuelve false en caso de no haber podido editar el productoView
+                    
 
-                    bool resultadoOk = logicaProductos.Actualizar(producto);
-                    if (resultadoOk)
+                    try
                     {
+                        logicaProductos.Actualizar(producto);
                         return RedirectToAction("Index");
                     }
-                    else
+                    catch (Exception e)
                     {
-                        TempData["errorMessage"] = "No se pudo actualizar el producto. Verifique los datos ingresados.";
+                        TempData["errorMessage"] = "No se pudo actualizar el producto. Detalle: " + e.Message;
                         return RedirectToAction("Index", "Error");
                     }
+
                 }
             }
             else
@@ -163,16 +163,15 @@ namespace EFMVC.Controllers
         // GET: Producto/Delete/5
         public ActionResult Borrar(int id)
         {
-            //En este método no se utiliza try-catch ya que la capa lógica maneja
-            //la excepción y deuelve false en caso de no haber podido eliminar el producto
-            bool resultadoOk = logicaProductos.Borrar(id);
-            if (resultadoOk)
+
+            try
             {
+                logicaProductos.Borrar(id);
                 return RedirectToAction("Index");
             }
-            else
+            catch (Exception e)
             {
-                TempData["errorMessage"] = "No se pudo eliminar el producto.";
+                TempData["errorMessage"] = "No se pudo eliminar el producto. Detalle: " + e.Message;
                 return RedirectToAction("Index", "Error");
             }
         }

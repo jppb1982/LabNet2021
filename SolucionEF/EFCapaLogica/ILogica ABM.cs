@@ -10,9 +10,9 @@ namespace EFCapaLogica
     {
         List<T> ObtenerTodos();
 
-        Boolean Agregar(T elemento);
-        Boolean Borrar(int id);
-        Boolean Actualizar(T elemento);
+        void Agregar(T elemento);
+        void Borrar(int id);
+        void Actualizar (T elemento);
         int OtenerProximoId();
     }
 }

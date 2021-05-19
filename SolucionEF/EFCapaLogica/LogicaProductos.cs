@@ -24,64 +24,64 @@ namespace EFCapaLogica
             return producto;
 
         }
-        public bool Actualizar(Products elemento)
+        public void Actualizar(Products elemento)
         {
             try
             {
                 Products productoActualizar = context.Products.Find(elemento.ProductID);
                 if (productoActualizar == null)
                 {
-                    return false;
+                    throw new ExcepcionPersonalizadaMVC("No se encontro el ID del producto a actualizar ", "Actualizar("+elemento.ProductID+")");
                 }
                 else
                 {
                     productoActualizar.ProductName = elemento.ProductName;
                     productoActualizar.QuantityPerUnit = elemento.QuantityPerUnit;
                     productoActualizar.UnitPrice = elemento.UnitPrice;
-                    context.SaveChanges();
-                    return true;
+                    context.SaveChanges();                   
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return false;
+                throw new ExcepcionPersonalizadaMVC(e.Message, "Actualizar(" + elemento.ProductID + ")");
             }
         }
 
-        public bool Agregar(Products elemento)
+        public void Agregar(Products elemento)
         {
             elemento.ProductID = OtenerProximoId();
             try
             {
                 context.Products.Add(elemento);
                 context.SaveChanges();
-                return true;
+                
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return false;
+                throw new ExcepcionPersonalizadaMVC(e.Message, "Agregar(" + elemento.ProductID + ")");
+
             }
         }
 
-        public bool Borrar(int id)
+        public void Borrar(int id)
         {
             try
             {
                 Products productoEliminar = context.Products.Find(id);
                 if (productoEliminar == null)
                 {
-                    return false;
+                    throw new ExcepcionPersonalizadaMVC("No se encontro el producto a eliminar", "Borrar(" + id + ")");
                 }
                 else
                 {
                     context.Products.Remove(productoEliminar);
                     context.SaveChanges();
-                    return true;
+                   
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return false;
+                throw new ExcepcionPersonalizadaMVC(e.Message, "Borrar(" + id + ")");
             }
         }
 

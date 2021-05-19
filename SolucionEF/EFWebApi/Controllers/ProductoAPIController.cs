@@ -76,17 +76,15 @@ namespace EFWebApi.Controllers
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
-            bool resultadoOk = logicaProductos.Borrar(id);
-
-            if (resultadoOk)
+            try
             {
-                return Ok();
+                logicaProductos.Borrar(id);
+                return Ok("Se eliminó el producto exitosamente");
             }
-            else
+            catch (Exception e)
             {
-                return NotFound();
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Detalle: " + e.Message));
             }
-
         }
 
 
@@ -97,30 +95,22 @@ namespace EFWebApi.Controllers
 
             try
             {
-                bool resultadoOk = logicaProductos.Agregar(new Products
+                logicaProductos.Agregar(new Products
                 {
                     ProductName = p.Nombre,
                     QuantityPerUnit = p.CantidadPorUnidad,
                     UnitPrice = p.PrecioUnitario
                 });
-
-                if (resultadoOk)
-                {
-                    return Ok();
-                }
-                else
-                {
-                    return NotFound();
-                }
+                return Ok("Se agregó el producto correctamente");
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
-                return NotFound();
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Detalle: " + e.Message));
             }
-
         }
+
+
 
 
 
@@ -131,7 +121,7 @@ namespace EFWebApi.Controllers
 
             try
             {
-                bool resultadoOk = logicaProductos.Actualizar(new Products
+                logicaProductos.Actualizar(new Products
                 {
                     ProductID = p.Id,
                     ProductName = p.Nombre,
@@ -139,22 +129,13 @@ namespace EFWebApi.Controllers
                     UnitPrice = p.PrecioUnitario
                 });
 
-                if (resultadoOk)
-                {
-                    return Ok();
-                }
-                else
-                {
-                    return NotFound();
-                }
+                return Ok("El producto se actualizó correctamente");
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
-                return NotFound();
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Detalle: " + e.Message));
             }
-
         }
 
     }

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,10 +10,13 @@ import { ListaProductosComponent } from './components/lista-productos/lista-prod
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { VerProductoComponent } from './components/ver-producto/ver-producto.component';
 import { EditarProductoComponent } from './components/editar-producto/editar-producto.component';
-
+import { GlobalErrorHandler } from './errors/GlobalErrorHandler';
+import { ServerErrorInterceptor } from './errors/servererrorinterceptor';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackbarSeverityModule } from 'mat-snackbar-severity';
 
 @NgModule({
   declarations: [
@@ -31,9 +34,14 @@ import { EditarProductoComponent } from './components/editar-producto/editar-pro
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatSnackBarModule,
+    MatSnackbarSeverityModule
   ],
-  providers: [],
+  providers: [
+    {provide: ErrorHandler, useClass: GlobalErrorHandler}, 
+    { provide: HTTP_INTERCEPTORS, useClass: ServerErrorInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

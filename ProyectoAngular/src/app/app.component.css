@@ -8,3 +8,8 @@ footer {
     color: white;
     padding: 0;
 }
+
+::ng-deep .snackbarStyleError{
+    background-color:yellow;
+    color:white;
+  }

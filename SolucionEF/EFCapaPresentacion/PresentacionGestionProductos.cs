@@ -23,7 +23,7 @@ namespace EFCapaPresentacion
 
             foreach (Products producto in listaProductos)
             {
-                Console.WriteLine($"{producto.ProductID}\t{(producto.ProductName == null ? "-" : producto.ProductName).PadRight(40)}\t{(producto.QuantityPerUnit==null?"-": producto.QuantityPerUnit).PadRight(20)}\t{producto.UnitPrice}");
+                Console.WriteLine($"{producto.ProductID}\t{(producto.ProductName == null ? "-" : producto.ProductName).PadRight(40)}\t{(producto.QuantityPerUnit == null ? "-" : producto.QuantityPerUnit).PadRight(20)}\t{producto.UnitPrice}");
             }
 
 
@@ -61,13 +61,15 @@ namespace EFCapaPresentacion
             //Se guarda el producto
 
             Console.Clear();
-            if (objLogicaProducto.Agregar(elProducto))
+            try
             {
+                objLogicaProducto.Agregar(elProducto);
                 Console.WriteLine("El producto fue ingresado con éxito\n");
             }
-            else
+            catch (Exception)
             {
                 Console.WriteLine("No se pudo ingresar el producto\n");
+
             }
         }
 
@@ -86,15 +88,17 @@ namespace EFCapaPresentacion
                 int idProductoEliminar = HelperValidaciones.ObtenerValorEnteroValido();
 
                 Console.Clear();
-                if (objLogicaProducto.Borrar(idProductoEliminar))
+
+                try
                 {
+                    objLogicaProducto.Borrar(idProductoEliminar);
                     Console.WriteLine("El producto fue eliminado con éxito.");
                 }
-                else
+                catch (Exception)
                 {
+
                     Console.WriteLine("No se pudo eliminar el producto");
                 }
-
             }
             else
             {
@@ -173,18 +177,17 @@ namespace EFCapaPresentacion
                     productoActualizar.UnitPrice = HelperValidaciones.ObtenerValorDecimalValido();
 
                     Console.Clear();
-                    if (objLogicaProducto.Actualizar(productoActualizar))
+
+                    try
                     {
+                        objLogicaProducto.Actualizar(productoActualizar);
                         Console.WriteLine("El producto fue actualizado con éxito\n");
                     }
-                    else
+                    catch (Exception)
                     {
                         Console.WriteLine("No se pudo actualizar el producto\n");
                     }
                 }
-
-
-
             }
             else
             {

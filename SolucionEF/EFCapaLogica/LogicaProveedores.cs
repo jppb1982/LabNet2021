@@ -10,69 +10,78 @@ namespace EFCapaLogica
 {
     public class LogicaProveedores : LogicaBase, ILogica_ABM<Suppliers>
     {
-        public bool Actualizar(Suppliers elemento)
+        public void Actualizar(Suppliers elemento)
         {
             try
             {
                 Suppliers proveedorActualizar = context.Suppliers.Find(elemento.SupplierID);
                 if (proveedorActualizar == null)
                 {
-                    return false;
+                    throw new ExcepcionPersonalizadaMVC("No se encontro el proveedor a actualizar ", "Actualizar(" + elemento.SupplierID + ")");
                 }
                 else
                 {
                     proveedorActualizar.CompanyName = elemento.CompanyName;
                     proveedorActualizar.ContactName = elemento.ContactName;
                     context.SaveChanges();
-                    return true;
+                 
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return false;
+                throw new ExcepcionPersonalizadaMVC(e.Message, "Actualizar(" + elemento.SupplierID + ")");
             }
         }
 
-        public bool Agregar(Suppliers elemento)
+        public void Agregar(Suppliers elemento)
         {
             elemento.SupplierID = OtenerProximoId();
             try
             {
                 context.Suppliers.Add(elemento);
                 context.SaveChanges();
-                return true;
+                
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return false;
+                throw new ExcepcionPersonalizadaMVC(e.Message, "Agregar(" + elemento.SupplierID + ")");
             }
         }
 
-        public bool Borrar(int id)
+        public void Borrar(int id)
         {
             try
             {
                 Suppliers proveedorEliminar = context.Suppliers.Find(id);
                 if (proveedorEliminar == null)
                 {
-                    return false;
+                    throw new ExcepcionPersonalizadaMVC("No se encontro el proveedor a eliminar ", "Borrar(" + id + ")");
                 }
                 else
                 {
                     context.Suppliers.Remove(proveedorEliminar);
                     context.SaveChanges();
-                    return true;
+                    
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return false;
+                throw new ExcepcionPersonalizadaMVC(e.Message, "Borrar(" + id + ")");
             }
         }
 
         public List<Suppliers> ObtenerTodos()
         {
-            return context.Suppliers.ToList();
+
+            try
+            {
+                return context.Suppliers.ToList();
+            }
+            catch (Exception e)
+            {
+
+                throw new ExcepcionPersonalizadaMVC(e.Message, "ObtenerTodos()");
+            }            
         }
 
         public int OtenerProximoId()
