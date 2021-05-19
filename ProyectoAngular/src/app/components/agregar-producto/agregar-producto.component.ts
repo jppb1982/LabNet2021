@@ -53,7 +53,4 @@ export class AgregarProductoComponent implements OnInit {
     }
   }
 
-  onReset() {
-    this.agregarProductoForm.reset();
-  }
 }

@@ -13,7 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { VerProductoComponent } from './components/ver-producto/ver-producto.component';
 import { EditarProductoComponent } from './components/editar-producto/editar-producto.component';
-import { GlobalErrorHandler } from './errors/GlobalErrorHandler';
+import { GlobalErrorHandler } from '../app/errors/globalerrorhandler';
 import { ServerErrorInterceptor } from './errors/servererrorinterceptor';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSnackbarSeverityModule } from 'mat-snackbar-severity';

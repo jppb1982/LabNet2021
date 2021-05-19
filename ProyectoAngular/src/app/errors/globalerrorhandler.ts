@@ -26,7 +26,8 @@ export class GlobalErrorHandler implements ErrorHandler {
             // Server Error
             message = errorService.getServerMessage(error);
             stackTrace = errorService.getServerStack(error);
-            notifier.showError(message + " Detalle: " + error.message);
+
+            notifier.showError(message +" "+ error.error.Message);
         } else {
             // Client Error
             message = errorService.getClientMessage(error);
