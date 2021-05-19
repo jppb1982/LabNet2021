@@ -9,18 +9,22 @@
             <label>Nombre</label>
             <input type="text" formControlName="nombre" class="form-control"
                 [ngClass]="{ 'is-invalid' : form.nombre.errors }" />
-            <div *ngIf="form.nombre.errors" class="invalid-feedback">
-                <div *ngIf="form.nombre.errors.required">El nombre es obligatorio</div>
+            <div *ngIf="form.nombre.errors" class="alert alert-danger invalid-feedback"  role="alert">
+                <div class="container-error-message" *ngIf="form.nombre.errors.required">El nombre es obligatorio</div>
+                <div class="container-error-message" *ngIf="form.nombre.errors.maxlength || form.nombre.errors.minlength">El nombre debe tener entre 3 y 40 carateres</div>
             </div>
         
             <label>Presentación</label>
-            <input type="text" formControlName="presentacion" class="form-control" />
+            <input type="text" formControlName="presentacion" class="form-control"  [ngClass]="{ 'is-invalid' : form.presentacion.errors }" />
+            <div *ngIf="form.presentacion.errors" class="alert alert-danger invalid-feedback"  role="alert">
+                <div class="container-error-message" *ngIf="form.presentacion.errors.maxlength">El nombre debe tener más de 20 carateres</div>
+            </div>
 
             <label>Precio</label>
-            <input type="number" formControlName="precio" class="form-control"
-                [ngClass]="{ 'is-invalid': form.precio.errors }" />
-            <div *ngIf="form.precio.errors" class="invalid-feedback">
-                <div *ngIf="form.precio.errors.required">El precio es requerido</div>
+            <input type="number" formControlName="precio" class="form-control" [ngClass]="{ 'is-invalid': form.precio.errors }" />
+            <div *ngIf="form.precio.errors" class="alert alert-danger invalid-feedback"  role="alert">
+                <div class="container-error-message" *ngIf="form.precio.errors.required">El precio es obligatorio</div>
+                
             </div>
         </div>
 
@@ -29,7 +33,7 @@
                 <button class="btn btn-primary" [disabled]="editarProductoForm.invalid">Guardar</button>
             </div>
             <div class="col text-center">
-                <button class="btn btn-secondary" type="submit">Cancelar</button>
+                <button class="btn btn-secondary" type="button" (click)="haciaPrincipal()">Cancelar</button>
             </div>
         </div>
 

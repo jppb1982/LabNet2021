@@ -28,23 +28,16 @@ export class EditarProductoComponent implements OnInit {
 
   ngAfterViewInit() {
     this.traerProductoId();
-    this.editarProductoForm = this.formBuilder.group(
-      {
-        nombre: ["", Validators.maxLength(40), Validators.minLength(3), Validators.required],
-        presentacion: ["", Validators.maxLength(20)],
-        precio: ["", Validators.required]
-      }
-    );
+    
   }
 
   ngOnInit(): void {
 
     this.editarProductoForm = this.formBuilder.group(
       {
-        id: [""],
-        nombre: [""],
-        presentacion: [""],
-        precio: [""],
+        nombre: ["", [Validators.maxLength(40), Validators.minLength(3), Validators.required]],
+        presentacion: ["", [Validators.maxLength(20)]],
+        precio: ["", [Validators.required]]
       }
     );
   }
@@ -68,12 +61,15 @@ export class EditarProductoComponent implements OnInit {
 
   }
 
+  haciaPrincipal(){
+    this.router.navigate(['/']);
+  }
 
   onSubmit() {
     this.submitted = true;
 
-    // stop here if form is invalid
     if (this.editarProductoForm.invalid) {
+      console.log("Campos erroneos");
       return;
     }
     else {

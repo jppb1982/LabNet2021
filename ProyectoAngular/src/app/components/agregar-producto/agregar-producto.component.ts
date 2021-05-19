@@ -17,39 +17,21 @@ export class AgregarProductoComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private abmProductoService: AbmProductosService,
-    private router: Router
-  ) {
-
+    private router: Router) 
+  {
   }
-  ngAfterViewChecked() {
-    this.agregarProductoForm = this.formBuilder.group(
-      {
-
-        nombre: ["", Validators.maxLength(40), Validators.minLength(3), Validators.required],
-        presentacion: ["", Validators.maxLength(20)],
-        precio: ["", Validators.required]
-
-      }
-    );
-  }
-
 
   ngOnInit(): void {
     this.agregarProductoForm = this.formBuilder.group(
       {
-        // nombre: [""],
-        // presentacion: [""],
-        // precio: [""]
-
+        nombre: ["", [Validators.maxLength(40), Validators.minLength(3), Validators.required]],
+        presentacion: ["", [Validators.maxLength(20)]],
+        precio: ["", [Validators.required]]
       }
-
     );
 
   }
-  ngAfterViewInit() {
 
-
-  }
   get form() {
     return this.agregarProductoForm.controls;
   }
@@ -57,8 +39,8 @@ export class AgregarProductoComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    // stop here if form is invalid
     if (this.agregarProductoForm.invalid) {
+      console.log("Campos erroneos");
       return;
     }
     else {
@@ -72,7 +54,6 @@ export class AgregarProductoComponent implements OnInit {
   }
 
   onReset() {
-    this.submitted = false;
     this.agregarProductoForm.reset();
   }
 }

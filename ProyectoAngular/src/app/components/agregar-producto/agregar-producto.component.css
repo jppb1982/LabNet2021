@@ -47,3 +47,7 @@
     padding: 0.75em;
     border: 1px solid #43d1af;
 }
+
+.alert-danger {
+    width: 90%;
+}
